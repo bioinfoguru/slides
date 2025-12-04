@@ -54,7 +54,6 @@ module.exports = function (eleventyConfig) {
     });
 
     return {
-        pathPrefix: "/slides/",
         dir: {
             input: "src",
             includes: "_includes",
