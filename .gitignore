@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Build output
+_site/
+quarto_out/
+
+# Environment variables
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cache
+.cache/
+.eleventy-cache/
+.Rhistory
+
+test_slidev/
+/.quarto/
+.ipynb_checkpoints/
+
+*.bat
+bioinfo_intro/

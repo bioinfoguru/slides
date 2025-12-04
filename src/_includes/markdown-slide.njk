@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="/reveal.js/dist/theme/{{ theme | default('black') }}.css">
+  <link rel="stylesheet" href="/reveal.js/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="/reveal.js/plugin/appearance/appearance.css">
+  <style>
+    .reveal h1, .reveal h2, .reveal h3 {
+      text-transform: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="reveal">
+  <div class="slides">
+    <section data-markdown data-separator="^\n---\n$">
+      <textarea data-template>{{ page.inputPath | rawInclude | safe }}</textarea>
+    </section>
+  </div>
+</div>  
+
+  <script src="/reveal.js/dist/reveal.js"></script>
+  <script src="/reveal.js/plugin/notes/notes.js"></script>
+  <script src="/reveal.js/plugin/markdown/markdown.js"></script>
+  <script src="/reveal.js/plugin/highlight/highlight.js"></script>
+  <script src="/reveal.js/plugin/zoom/zoom.js"></script>
+  <script src="/reveal.js/plugin/appearance/appearance.js"></script>
+  <script src="/reveal.js/plugin/math/math.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, Appearance, RevealMath.KaTeX ],
+      transition: 'slide',
+      backgroundTransition: 'fade',
+      appearance: {
+        autoappear: true,
+        autoelements: true,
+        hideagain: false
+      }
+    });
+
+    mermaid.initialize({ startOnLoad: false });
+
+    Reveal.on( 'ready', event => {
+      var graphs = document.querySelectorAll( 'pre code.language-mermaid, pre code.mermaid' );
+      var nodes = [];
+      graphs.forEach( graph => {
+        var rawContent = graph.innerHTML; // Use innerHTML to get entities if any, but textContent is usually better for code. 
+        // Actually, Reveal markdown plugin might put encoded text in code block.
+        // Let's use textContent but ensure we decode if it looks like HTML.
+        // A safer way for code blocks is usually just textContent.
+        // But let's try to decode just in case.
+        var txt = document.createElement("textarea");
+        txt.innerHTML = graph.innerHTML;
+        var content = txt.value.trim();
+        
+        var div = document.createElement( 'div' );
+        div.classList.add( 'mermaid' );
+        div.textContent = content;
+        graph.parentNode.replaceWith( div );
+        nodes.push(div);
+      });
+      
+      if (nodes.length > 0) {
+        mermaid.run({
+          nodes: nodes
+        });
+      }
+    });
+  </script>
+</body>
+</html>
