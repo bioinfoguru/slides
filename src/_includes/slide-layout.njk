@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title }}</title>
-  <link rel="stylesheet" href="/reveal.js/dist/reveal.css">
-  <link rel="stylesheet" href="/reveal.js/dist/theme/{{ theme | default('black') }}.css">
-  <link rel="stylesheet" href="/reveal.js/plugin/highlight/monokai.css">
-  <link rel="stylesheet" href="/reveal.js/plugin/appearance/appearance.css">
+  <link rel="stylesheet" href="{{ '/reveal.js/dist/reveal.css' | url }}">
+  <link rel="stylesheet" href="{{ '/reveal.js/dist/theme/' + (theme | default('black')) + '.css' | url }}">
+  <link rel="stylesheet" href="{{ '/reveal.js/plugin/highlight/monokai.css' | url }}">
+  <link rel="stylesheet" href="{{ '/reveal.js/plugin/appearance/appearance.css' | url }}">
   <style>
     .reveal h1, .reveal h2, .reveal h3 {
       text-transform: none;
@@ -21,13 +21,13 @@
     </div>
   </div>
 
-  <script src="/reveal.js/dist/reveal.js"></script>
-  <script src="/reveal.js/plugin/notes/notes.js"></script>
-  <script src="/reveal.js/plugin/markdown/markdown.js"></script>
-  <script src="/reveal.js/plugin/highlight/highlight.js"></script>
-  <script src="/reveal.js/plugin/zoom/zoom.js"></script>
-  <script src="/reveal.js/plugin/appearance/appearance.js"></script>
-  <script src="/reveal.js/plugin/math/math.js"></script>
+  <script src="{{ '/reveal.js/dist/reveal.js' | url }}"></script>
+  <script src="{{ '/reveal.js/plugin/notes/notes.js' | url }}"></script>
+  <script src="{{ '/reveal.js/plugin/markdown/markdown.js' | url }}"></script>
+  <script src="{{ '/reveal.js/plugin/highlight/highlight.js' | url }}"></script>
+  <script src="{{ '/reveal.js/plugin/zoom/zoom.js' | url }}"></script>
+  <script src="{{ '/reveal.js/plugin/appearance/appearance.js' | url }}"></script>
+  <script src="{{ '/reveal.js/plugin/math/math.js' | url }}"></script>
   <script>
     Reveal.initialize({
       hash: true,
