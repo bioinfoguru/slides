@@ -34,6 +34,9 @@ jobs:
       - name: Build with Eleventy
         run: npm run build
 
+      - name: Copy quarto_out files into _site
+        run: cp -r quarto_out/* _site/        
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
