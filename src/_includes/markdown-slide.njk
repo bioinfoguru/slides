@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title }}</title>
   <link rel="stylesheet" href="{{ '/reveal.js/dist/reveal.css' | url }}">
-  <link rel="stylesheet" href="{{ '/reveal.js/dist/theme/' + (theme | default('black')) + '.css' | url }}">
+  {% set themePath = '/reveal.js/dist/theme/' + (theme | default('black')) + '.css' %}
+  <link rel="stylesheet" href="{{ themePath | url }}">
   <link rel="stylesheet" href="{{ '/reveal.js/plugin/highlight/monokai.css' | url }}">
   <link rel="stylesheet" href="{{ '/reveal.js/plugin/appearance/appearance.css' | url }}">
   <style>
