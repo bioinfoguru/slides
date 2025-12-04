@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "npm run build && cp -r quarto_out/* _site/ || true"
   publish = "_site"
 
 [build.environment]
