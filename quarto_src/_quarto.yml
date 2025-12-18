@@ -1,0 +1,15 @@
+project:
+  type: website
+  output-dir: ../quarto_out
+  render:
+    - index.qmd
+#    - python-intro
+#    - Enzymes
+#    - TCA    
+    - docking-intro
+
+#website:
+#  title: "Slides from bioinfo.guru"
+filters:
+  - roughnotation
+  - animate-graph

@@ -1,0 +1,9 @@
+<!-- two-column.webc -->
+<div class="grid grid-cols-2 gap-4">
+  <div webc:log="slots.left">
+    <slot name="left"></slot>
+  </div>
+  <div>
+    <slot name="right"></slot>
+  </div>
+</div>

@@ -1,0 +1,230 @@
+---
+title: "Introduction to <br> Machine Learning"
+#title-slide-attributes:
+#  data-background-color: "pink"
+author: "Manish Datt"
+date: today
+date-format: long
+format: 
+  revealjs:
+    logo: "../images/logo_final_transparent.png"
+    progress: false
+    footer: "<span style='font-family:Geo; color:#9c51e0;'>bioinfo.guru</span>"
+    slide-number: c/t
+    css: "slides.css"
+    include-after-body: clean_title_page.html
+title-slide-attributes:
+  class: "gentle-gradient"
+  data-background-size: 75px
+  data-background-position: 50% 90%
+  data-background-image: "../images/logo_final_transparent.png"
+include-in-header:
+  - text: |
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+---
+
+## Machine Learning – definition
+
+A type of artificial intelligence in which computers use huge amounts of data to learn how to do tasks rather than being programmed to do them.
+
+<br>
+
+Machine learning makes it possible for computing systems to become smarter as they encounter additional data.
+
+## Machine Learning – types {#blue_dash transition="concave" transition-speed="slow"}
+
+::: incremental
+-    Supervised machine learning
+
+    -   Data with labels – learn the mapping between input and output.
+
+-    Unupervised machine learning
+
+    -   Data without labels – learn patterns in the dataset.
+
+-    Reinforcement machine learning
+
+    -   Feedback-based learning – actions are rewarded or punished.
+:::
+
+```{=html}
+<script type="application/javascript">
+// hide div with class 'footer'
+// document.querySelector('.footer').style.display = 'none';
+// document.querySelector('.footer-default').style.display = 'none';
+
+function myFunction(id1) {
+    var divsToHide = document.querySelectorAll("div[id^='data_']");
+    for(var i = 0; i < divsToHide.length; i++){
+        divsToHide[i].classList.add('is-hidden');
+    }
+    var element = document.getElementById(id1);
+    element.classList.toggle("is-hidden");
+}
+function myFunc2(){
+    var div_repeat1 = document.getElementById('repeat1');
+    div_repeat1.classList.toggle("has-background-warning");
+}
+
+</script>
+```
+## Machine learning – workflow
+
+::: {.columns .has-text-centered .m-0}
+::: {.column .has-text-centered .m-0 .is-one-third .p-0}
+<button class="button is-info is-large is-outlined m-0" onClick="myFunction(&#39;data_1&#39;)">
+
+Data
+
+</button>
+
+<p class="title is-4 m-0 p-0">
+<i class="fa-solid fa-arrow-down-long"></i>
+</p>
+
+<button class="button is-info is-large is-outlined  m-0" onClick="myFunction(&#39;data_prep&#39;)">
+
+Data Pre-processing
+
+</button>
+
+<p class="title is-4 m-0">
+<i class="fa-solid fa-arrow-down-long"></i>
+</p>
+
+::: {#repeat1 .container}
+<button class="button is-info is-large is-outlined m-0" onClick="myFunction(&#39;data_build&#39;)">
+
+Model Building
+
+</button>
+
+<p class="title is-3 m-0" onclick="myFunc2()">
+<i class="fa-solid fa-repeat fa-rotate-90"></i>
+</p>
+
+<button class="button is-info is-large is-outlined  m-0" onClick="myFunction(&#39;data_valid&#39;)">
+
+Model Validation
+
+</button>
+:::
+
+<p class="title is-4 m-0">
+<i class="fa-solid fa-arrow-down-long"></i>
+</p>
+
+<button class="button is-info is-large is-outlined  m-0" onClick="myFunction(&#39;data_deploy&#39;)">
+
+Model Deployment
+
+</button>
+:::
+
+::: {#data_1 .column .is-hidden .pt-6}
+Data collection
+
+Different sources of data
+
+Different types of data
+:::
+
+::: {#data_prep .column .is-hidden .pt-6}
+Data cleaning
+
+Data Normalization
+
+Feature extraction
+:::
+
+::: {#data_build .column .is-hidden .pt-6}
+Training
+
+Algorithm selection
+
+Hyperparameter tuning
+:::
+
+::: {#data_valid .column .is-hidden .pt-6}
+Testing
+
+Statistical analysis
+:::
+
+::: {#data_deploy .column .is-hidden .pt-6}
+Prediction or classification of the new data.
+:::
+:::
+
+## Machine learning statistics
+
+::: {.columns .m-0}
+::: {.column .is-half .m-0}
+::: {.is-size-4 .has-text-centered .is-vcentered}
+
+<p>
+Confusion Matrix
+</p>
+
+|                     | Predicted Positive                                                     | Predicted Negative                                                     |
+|---------------------|------------------------------------------------------------------------|------------------------------------------------------------------------|
+| **Actual Positive** | [TP]{.is-size-3 .is-family-code style="color:blue; font-weight: 700;"} | [FN]{.is-size-3 .is-family-code style="color:blue; font-weight: 700;"} |
+| **Actual Negative** | [FP]{.is-size-3 .is-family-code style="color:blue; font-weight: 700;"} | [TN]{.is-size-3 .is-family-code style="color:blue; font-weight: 700;"} |
+
+::: {.is-size-5 .fragment .mt-6 .pt-6 .has-text-left}
+Sensitivity ↔ True Positive Rate ↔ Recall
+
+Specificity ↔ True Negative Rate
+
+Precision ↔ Positive Predictive Value
+:::
+:::
+:::
+
+::: {.column .is-half .fragment .m-0 data-fragment-index="1"}
+$$
+Sensitivity = \frac{TP}{TP+FN} 
+$$ $$
+Specificity = \frac{TN}{TN+FP}
+$$ $$
+Precision = \frac{TP}{TP + FP}
+$$
+
+$$
+FPR = \frac{FP}{TN + FP} = 1 - specificity
+$$
+
+$$
+Accuracy = \frac{TP +TN}{TP +TN +FP +FN}
+$$
+
+$$
+Error \text{ } rate = \frac{FP +FN}{TP + TN+ FP + FN}
+$$
+:::
+:::
+
+## 
+
+::: columns
+::: {.hero .column .is-4 .is-fullheight}
+<p class="title is-size-1 pt-6">
+
+Thank you!
+
+</p>
+:::
+
+::: {.hero-body .column .is-4 .is-fullheight style="padding-top:20%;"}
+<img src="../images/logo_final_transparent.png" width="100px"/></img>
+:::
+
+::: {.hero .column .is-4 .is-fullheight style="padding-top:50%;"}
+<p>
+
+manish\@[bioinfo.guru]{style="color:#9c51e0; font-family:Geo;"}
+
+</p>
+:::
+:::

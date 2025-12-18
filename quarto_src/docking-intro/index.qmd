@@ -1,0 +1,355 @@
+---
+title: '<span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">Introduction to <br> Molecular Docking</span>'
+#title-slide-attributes:
+#  data-background-color: "pink"
+author: "Manish Datt"
+format: 
+  revealjs:
+    logo: "../images/logo_final_transparent.png"
+    progress: false
+    footer: "<span style='font-family:Geo; color:#9c51e0;'>bioinfo.guru</span>"
+    slide-number: c/t
+    include-after-body: "../clean_title_page.html"
+    css: "../slides_min.css"
+title-slide-attributes: 
+  data-background-image: "../images/logo_final_transparent.png"
+  data-background-size: 75px
+  data-background-position: 50% 90%
+include-in-header:
+  - text: |
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link href="https://fonts.googleapis.com/css2?family=Geo&family=Lato&display=swap" rel="stylesheet" />  
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.18.0/flowchart.min.js" integrity="sha512-FX1RpRt8RDEtTiFbDxg4u62QUJXhVE+cVE1mBD0iSOpj/ZZ/VNyZKlwhBT39QMcP5KEYS3yU8wh6Qpa57qVnbg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.8.0/mermaid.min.js" integrity="sha512-LjhAzAg2/5zsgtj/a6rKlyripQs594DkfL+vlA0qwrb/0McmLqIpglzZmrfAdbBURFS7LhFC2yvDDhilSx9UDg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+---
+
+## <span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">Molecular Docking</span> {#blue_dash transition="concave" transition-speed="slow"}
+
+Computational docking is widely used for study of protein-ligand interactions and for drug discovery and development.
+
+::: fragment
+<br> Tests the fit of a molecule in a protein binding site.
+:::
+
+::: fragment
+<br> Sampling of large number of possible configurations. <br> Score for fit using one of several different scoring functions.
+:::
+
+```{=html}
+<head>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geo&family=Lato&display=swap" rel="stylesheet" />  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.18.0/flowchart.min.js" integrity="sha512-FX1RpRt8RDEtTiFbDxg4u62QUJXhVE+cVE1mBD0iSOpj/ZZ/VNyZKlwhBT39QMcP5KEYS3yU8wh6Qpa57qVnbg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.8.0/mermaid.min.js" integrity="sha512-LjhAzAg2/5zsgtj/a6rKlyripQs594DkfL+vlA0qwrb/0McmLqIpglzZmrfAdbBURFS7LhFC2yvDDhilSx9UDg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+```
+## <span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">Docking – types</span>{#dock_types transition="concave" transition-speed="slow"}
+
+::: incremental
+-    Bound-Bound Docking
+
+    -   [Docking where both the docked molecules are from a bound conformation.]{.text-3xl}
+
+-    Bound-Unbound Docking
+
+    -   [Docking where one of the molecules is from a bound confomation.]{.text-3xl}
+
+-    Unbound-Unbound Docking
+
+    -   [Docking where both the docked molecules are from an unbound conformation.]{.text-3xl}
+:::
+
+```{=html}
+<script type="application/javascript">
+
+function myFunction(id1) {
+    var divsToHide = document.querySelectorAll("div[id^='d1_']");
+    for(var i = 0; i < divsToHide.length; i++){
+        divsToHide[i].classList.add('hidden');
+    }
+    var element = document.getElementById(id1);
+    element.classList.toggle("hidden");
+}
+function myFunc2(){
+    var div_repeat1 = document.getElementById('repeat1');
+    div_repeat1.classList.toggle("has-background-warning");
+}
+
+</script>
+```
+## <span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">Input -- target receptor</span>{#inp_target transition="concave" transition-speed="slow"}
+
+::: fragment
+Missing loops and sidechains, mutations.
+:::
+
+::: fragment
+Low occupancy, high displacement parameters.
+:::
+
+::: fragment
+Water molecules – enclosed in the targeted binding pocket, interacting with the co-crystalized ligand.
+:::
+
+::: fragment
+Cofactors - should be considered if they are involved in ligand recognition e.g. heme.
+:::
+
+::: fragment
+Hydrogen atoms – added as a part of receptor preparation in all docking programs.
+:::
+
+::: fragment
+In case no experimentally determined structure is available then homology derived structural model can be used.
+:::
+
+::: {.justify-end .text-base .text-right}
+Bender et al, Nat Protoc 16, 4799–4832 (2021)
+:::
+
+## <span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">Input -- Binding site</span> {#inp_bs transition="concave" transition-speed="slow"}
+
+A high-resolution ligand-bound structure.
+
+<p class="text-3xl pl-8">
+holo conformation performs better than apo.
+</p>
+
+<p class="text-3xl pl-8">
+geometries of the binding pocket are better defined.
+</p>
+
+::: fragment
+In the absence of defined binding pocket, prediction methods can be used to find potential binding sites.
+:::
+
+::: fragment
+Generally small buried binding sites better than large exposed ones.
+:::
+
+::: {.justify-end .text-base .text-right}
+Bender et al, Nat Protoc 16, 4799–4832 (2021)
+:::
+
+## <span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">Docking -- control</span> {#dock_control transition="concave" transition-speed="slow"}
+
+Using a known inhibitor(s) to optimize binding pocket and docking parameters.
+
+<p class="text-3xl pl-8">
+Docking should be able to reproduce the binding mode of the known inhibitor.
+</p>
+
+::: fragment
+Known actives should rank higher against a background of decoy molecules.
+:::
+
+::: fragment
+Negative control – known inactives; should rank low in docking.
+:::
+
+::: fragment
+Without known ligands as positive controls, one is at a substantial disadvantage at setting up docking calculations.
+:::
+
+::: {.justify-end .text-base .text-right}
+Bender et al, Nat Protoc 16, 4799–4832 (2021)
+:::
+
+## <span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">Docking -- Hit selection</span> {#dock_hit transition="concave" transition-speed="slow"}
+
+Compounds may be filtered for both positive and negative features.
+
+<p class="text-3xl pl-8">
+Docked orientation has favorable interactions with key residues.
+</p>
+
+<p class="text-3xl pl-16 text-gray-500">
+binding affinity, ligand efficiency, solubility, toxicity, etc.
+</p>
+
+::: fragment
+Closely related compounds will likely dock in similar poses with similar score, cluster compounds by 2D structure similarity after all other filters have been used and only select the best scoring cluster representative for testing.
+:::
+
+::: {.justify-end .text-base .text-right}
+Bender et al, Nat Protoc 16, 4799–4832 (2021)
+:::
+
+## <span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">Docking Programs</span> {#dock_prog transition="concave" transition-speed="slow"}
+
+::: {.grid .grid-cols-3 .gap-1 .content-center .m-0}
+::: {.col-auto .content-center .m-0 .p-0}
+AutoDock
+
+DOCK
+:::
+
+::: {.col-span-2 .content-center .m-0 .p-0}
+<img src="images/Autodock_cite.png"/></img>
+:::
+:::
+
+::: fragment
+Schrodinger
+
+Discovery Studio
+:::
+
+::: {.fragment .mt-4}
+SwissDock
+
+DockThor
+:::
+
+## <span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">Ligand Databases</span> {#lig_db transition="concave" transition-speed="slow"}
+
+<p style="position: relative; left: 0; top: 0;">
+<img src="images/CMC_DB.png" width="60%"/></img>
+</p>
+
+<p class="fragment" style="position: absolute; left: 55%; top: 30%;">
+<img src="images/NP_DB.png"/></img>
+</p>
+
+## <span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">Analysis</span> {#dock_analysis transition="concave" transition-speed="slow"}
+
+Ligplot+
+
+Discovery Studio Visualizer
+
+::: fragment
+::: {.grid .grid-cols-2 .gap-1 .content-center .m-0}
+::: {.col-auto .content-center .m-0 .p-0}
+ProLIF
+
+BINANA
+:::
+
+::: {.col-auto .content-center .m-0 .p-0}
+<img src="images/BINANA.png"/></img>
+:::
+:::
+:::
+
+## <span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">Docking – workflow</span> {#dock_workflow transition="concave" transition-speed="slow"}
+
+::: {.grid .grid-cols-3 .gap-1 .content-center .m-0}
+::: {.col-auto .content-center .m-0 .p-0}
+<button class="bg-blue-300" onClick="myFunction(&#39;d1_r_prep&#39;)">
+
+[Receptor Preparation]{.text-3xl .leading-tight .px-2}
+
+</button>
+
+<!-- add an svg arrow here pointing down -->
+
+<svg class="h-24 w-24 text-gray-500 -rotate-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 17l-4 4m0 0l-4-4m4 4V3"/></svg>
+
+<button class="bg-blue-300" onClick="myFunction(&#39;d1_g_prep&#39;)">
+
+[Grid Preparation]{.text-3xl .px-2}
+
+</button>
+
+<svg class="h-16 w-16 text-gray-500 -rotate-45 ml-36" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 17l-4 4m0 0l-4-4m4 4V3"/></svg>
+:::
+
+::: {.col-auto .content-center .m-0 .p-0}
+<button class="bg-blue-400 -ml-8 mt-4" onClick="myFunction(&#39;d1_l_prep&#39;)">
+
+[Ligand Preparation]{.text-3xl .px-2}
+
+</button>
+
+<svg class="h-64 w-64 text-gray-500 rotate-12 -ml-24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4" d="M16 17l-4 4m0 0l-4-4m4 4V3"/></svg>
+:::
+
+::: {#d1_r_prep .col-auto .hidden .pt-6}
+<span class="text-blue-700">prepare_receptor.bat</span>
+
+Add missing residues, add hydrogens, etc.
+:::
+
+::: {#d1_l_prep .col-auto .hidden .pt-6}
+<span class="text-blue-700">prepare_ligand.bat</span>
+
+Add hydrogens, optimize geometry, etc.
+:::
+
+::: {#d1_g_prep .col-auto .hidden .pt-6}
+Grid generation using <span class="text-blue-700">AGFRgui</span>
+
+Grid box settings.
+:::
+
+::: {#d1_docking .col-auto .hidden .pt-6}
+Perform docking calculations using <span class="text-blue-700">ADFR</span> or <span class="text-blue-700">Vina</span>
+
+:::
+
+::: {#d1_analysis .col-auto .hidden .pt-6}
+Analysis of docking results 
+
+RMSD, binding energy, interactions, etc.
+:::
+
+::: {.col-span-2 .m-0 .pr-32}
+::: {#repeat1 .flex .justify-center}
+<button class="-mt-8 bg-blue-500 px-4 rounded text-white font-bold" onClick="myFunction(&#39;d1_docking&#39;)">
+
+Docking
+
+</button>
+:::
+
+::: {.flex .justify-center .m-0}
+<svg class="h-16 w-16 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 17l-4 4m0 0l-4-4m4 4V3"/></svg>
+:::
+
+::: {.flex .justify-center .m-0}
+<button class="btn bg-blue-500 px-4 rounded text-white" onClick="myFunction(&#39;d1_analysis&#39;)">
+
+Analysis
+
+</button>
+:::
+:::
+:::
+
+
+## <span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">Molecular Docking -- gist</span> {#dock_prot transition="concave" transition-speed="slow"}
+
+::: {.columns-1 .mt-16}
+Understand the configuration parameters
+
+::: {.fragment .mt-8}
+Review the literature
+:::
+
+::: {.fragment .mt-8}
+Knowledge of scripting language
+:::
+:::
+
+## Thank you! {.mt-32 .text-center}
+
+::: {.columns-1 .text-center .justify-items-center}
+
+<p style="font-family:Geo;">
+manish\@[bioinfo.guru]{style="color:#9c51e0; font-family:Geo;"}
+</p>
+
+<div style="margin-top:5em;">
+<img src="../images/logo_final_transparent.png" width="75px"></img> 
+</div>
+
+:::
+

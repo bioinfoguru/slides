@@ -1,0 +1,176 @@
+<script>
+  function remove() {
+    let footer = document.querySelector('div.footer');
+    let slideNo = document.querySelector('div.slide-number');
+	let logo_footer = document.querySelector('img.slide-logo');
+    slideNo.classList.add('hidden');
+    footer.classList.add('hidden');
+	logo_footer.classList.add('hidden');
+  
+    Reveal.on('slidechanged', event => {  
+      if(Reveal.isFirstSlide()) {
+        slideNo.classList.add('hidden');
+        footer.classList.add('hidden');
+		logo_footer.classList.add('hidden');
+      } else {
+        slideNo.classList.remove('hidden');
+        footer.classList.remove('hidden');
+		logo_footer.classList.remove('hidden');
+      }
+	        if(Reveal.isLastSlide()) {
+        slideNo.classList.add('hidden');
+        footer.classList.add('hidden');
+		logo_footer.classList.add('hidden');
+      } 
+    });
+  }
+  
+  window.onload = remove();
+</script>
+<style>
+.math.display   {
+  font-size: 24px;
+}  
+table td {
+  vertical-align: middle;
+  }
+
+li::marker {
+  content: "\f101"; /* FontAwesome Unicode */
+  font-family: FontAwesome;
+  font-size: 80%;
+  color: #505050; 
+}
+
+li { font-size: 95%; 
+}
+li li { 
+color: #505050; 
+list-style-type: none;
+}
+
+li li::marker{
+	content: none;
+}
+
+</style>
+
+<p style='font-family:Geo;'>manish@<span style='color:#9c51e0;'>bioinfo.guru</span></p>
+
+<style>
+.reveal .slide-logo {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 12px;
+  max-height: 2.2rem;
+  height: 100%;
+  width: auto;
+  z-index: 9999;
+}
+
+.reveal .footer {
+  display: block;
+  position: fixed;
+  bottom: 18px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 18px;
+  z-index: 2;
+  padding: 0;
+  background-color: transparent;
+}
+
+.reveal .footer > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.reveal .slide .footer {
+  display: none;
+}
+
+.reveal .slide-number {
+  bottom: 10px;
+  right: 10px;
+  font-size: 16px;
+  background-color: transparent;
+}
+
+.reveal.has-logo .slide-number {
+  bottom: initial;
+  bottom: 8px;
+  right: 8px;
+}
+
+.reveal .slide-number .slide-number-delimiter {
+  margin: 0;
+}
+
+.reveal .slide-menu-button {
+  left: 8px;
+  bottom: 8px;
+  display: none;
+}
+
+.reveal .slide-chalkboard-buttons {
+  position: fixed;
+  left: 12px;
+  bottom: 8px;
+  z-index: 30;
+  font-size: 24px;
+}
+
+.reveal .slide-chalkboard-buttons.slide-menu-offset {
+  left: 54px;
+}
+
+.reveal .slide-chalkboard-buttons > span {
+  margin-right: 14px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  .reveal .slide-logo {
+    max-height: 1.1rem;
+    bottom: -2px;
+    right: 10px;
+	z-index: 9999;
+  }
+  .reveal .footer {
+    font-size: 14px;
+    bottom: 12px;
+  }
+  .reveal .slide-number {
+    font-size: 12px;
+    bottom: 7px;
+  }
+  .reveal .slide-menu-button .fas::before {
+    height: 1.3rem;
+    width: 1.3rem;
+    vertical-align: -0.125em;
+    background-size: 1.3rem 1.3rem;
+  }
+
+  .reveal .slide-chalkboard-buttons .fas::before {
+    height: 0.95rem;
+    width: 0.95rem;
+    background-size: 0.95rem 0.95rem;
+    vertical-align: -0em;
+  }
+
+  .reveal .slide-chalkboard-buttons.slide-menu-offset {
+    left: 36px;
+  }
+  .reveal .slide-chalkboard-buttons > span {
+    margin-right: 9px;
+  }
+}
+
+html.print-pdf .reveal .slide-menu-button,
+html.print-pdf .reveal .slide-chalkboard-buttons {
+  display: none;
+}
+</style>
+

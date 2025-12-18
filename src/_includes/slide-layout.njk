@@ -4,16 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title }}</title>
-  <link rel="stylesheet" href="/reveal.js/dist/reveal.css">
-  {% set themePath = '/reveal.js/dist/theme/' + (theme | default('black')) + '.css' %}
-  <link rel="stylesheet" href="{{ themePath }}">
-  <link rel="stylesheet" href="/reveal.js/plugin/highlight/monokai.css">
-  <link rel="stylesheet" href="/reveal.js/plugin/appearance/appearance.css">
-  <style>
-    .reveal h1, .reveal h2, .reveal h3 {
-      text-transform: none;
-    }
-  </style>
+  
+  <!-- Reveal.js CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+<!-- Reveal.js CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+  
+<!-- Reveal.js Theme (loaded AFTER Tailwind for proper override) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/{{ theme | default('white') }}.min.css" id="theme">
+  
+  <!-- Tailwind CSS (locally processed) -->
+  <link rel="stylesheet" href="/assets/css/output.css">
+
+<script src="https://unpkg.com/rough-notation/lib/rough-notation.iife.js"></script>
+
 </head>
 <body>
   <div class="reveal">
@@ -22,25 +30,90 @@
     </div>
   </div>
 
-  <script src="/reveal.js/dist/reveal.js"></script>
-  <script src="/reveal.js/plugin/notes/notes.js"></script>
-  <script src="/reveal.js/plugin/markdown/markdown.js"></script>
-  <script src="/reveal.js/plugin/highlight/highlight.js"></script>
-  <script src="/reveal.js/plugin/zoom/zoom.js"></script>
-  <script src="/reveal.js/plugin/appearance/appearance.js"></script>
-  <script src="/reveal.js/plugin/math/math.js"></script>
+  <!-- Reveal.js Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/notes/notes.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/markdown/markdown.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/search/search.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/zoom/zoom.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@11.4.1/plugin/mermaid/mermaid.js"></script>
   <script>
+
+    // Initialize Reveal.js
     Reveal.initialize({
       hash: true,
-      plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, Appearance, RevealMath.KaTeX ],
       transition: 'slide',
+      transitionSpeed: 'default',
       backgroundTransition: 'fade',
-      appearance: {
-        autoappear: true,
-        autoelements: true,
-        hideagain: false
-      }
-    });
+      center: false,
+      
+      // Display controls
+      controls: false,
+      slideNumber: 'c/t',
+      progress: false,
+      center: false,
+      touch: true,
+      loop: false,
+      rtl: false,
+      navigationMode: 'default',
+      shuffle: false,
+      fragments: true,
+      fragmentInURL: false,
+      embedded: false,
+      autoSlide: 0,
+      autoSlideStoppable: true,
+      defaultTiming: null,
+      mouseWheel: false,
+      hideAddressBar: true,
+      previewLinks: false,
+      viewDistance: 3,
+      mobileViewDistance: 2,
+      
+      // Size options
+      width: 1280,
+      height: 720,
+      margin: 0,
+      minScale: 0.2,
+      maxScale: 2.0,
+      
+      plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom,
+          RevealMermaid
+        ]
+      });
+
+
   </script>
+  <script>
+  Reveal.on('ready', () => {
+    const elements = document.querySelectorAll('[data-rn-type]');
+    console.log("Found elements:", elements);
+
+    elements.forEach(el => {
+      const type = el.getAttribute('data-rn-type');
+      const annotation = RoughNotation.annotate(el, { type, color: 'red', padding: 0 });
+      annotation.show();
+    });
+  });
+</script>
+<style>
+.reveal .slide-number {
+  background: none;  /* removes grey background */
+  color: #555555;  }
+
+.reveal {
+  background-color: #000000;
+}
+.reveal .slides {
+  background-color: #FFFFFF;
+}
+</style>
+
 </body>
 </html>

@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Geo&display=swap');
+
+.bioinfoguru {
+	--my-color1: #9c51e0;
+	font-family: 'Geo', sans-serif;
+	color: var(--my-color1);
+	font-size: 125%;
+}
+
+/* Move logo to bottom-left instead of bottom-right */
+.reveal .slide-logo {
+	position: absolute;
+	bottom: 12px;
+	left: 12px;
+	/* override right positioning */
+	right: auto;
+	/* cancel default right */
+}
+
+.no_bullet ul {
+	list-style-type: none;
+	/* Removes the bullet icon */
+	padding-left: 0;
+	/* Removes the default left indentation of the <ul> */
+	margin: 0;
+	/* Resets default top/bottom margins */
+}
+
+i.fa-bars {
+	visibility: hidden;
+}
+
+.slide-number, .reveal.has-logo .slide-number {
+	bottom: 12px !important;
+	right: 12px !important;
+	top: unset !important;
+}

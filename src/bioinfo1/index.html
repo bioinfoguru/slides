@@ -1,0 +1,592 @@
+---
+layout: slide-layout.njk
+title: Introduction to Bioinformatics
+theme: white
+---
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+</style>
+<img class="logo" src="../images/logo_final_transparent.png" alt="">
+<style>
+  .reveal .logo {
+  position: fixed;
+  bottom: -10px;   /* or top: 20px */
+  left: 10px;    /* adjust corner */
+  width: 30px;    /* size */
+  z-index: 10;  /* keep above slides */
+}
+.title-slide .logo {
+  display: none !important;
+}
+.title-slide .slide-number {
+  display: none !important;
+}
+</style>
+
+<section data-state="title-slide">
+  <div class="mt-50 justify-items-center">
+  <p class="text-8xl font-extrabold bg-gradient-to-r from-purple-600 via-cyan-500 to-pink-500 bg-clip-text text-transparent">
+    Introduction to Bioinformatics
+  </p>
+  <div class="mt-8">
+    <p class="text-gray-600 text-5xl">Manish Datt</p>
+  </div>
+  <div class="mt-16 justify-items-center">
+    <img src="../images/bioinfo_intro/logo_final_transparent.png" alt="Logo" class="w-20 h-auto mx-auto">
+  </div>
+</div>
+</section>
+
+<section>
+  <p class="pl-8 text-7xl font-bold bg-gradient-to-r from-purple-600 via-cyan-500 to-pink-500 bg-clip-text text-transparent">
+    What's -omics?
+  </p>
+  <div class="pl-8">
+  <span>
+  <span class="text-rotate duration-6000">
+    <span>
+    <span class="bg-teal-200 text-teal-800 px-2 justify-self-end rounded-lg">Genomics</span>
+    <span class="bg-red-200 text-red-800 px-2 justify-self-end rounded-lg">Proteomics</span>
+    <span class="bg-blue-200 text-blue-800 px-2 justify-self-end rounded-lg">Transcriptomics</span>
+    </span>
+  </span>
+  </span>
+
+  <span> is a study of all the </span>
+  <span class="text-rotate duration-6000">
+    <span>
+    <span class="bg-teal-200 text-teal-800 px-2 rounded-lg">DNA</span>
+    <span class="bg-red-200 text-red-800 px-2 rounded-lg">Proteins</span>
+    <span class="bg-blue-200 text-blue-800 px-2 rounded-lg">Transcripts</span>
+    </span>
+  </span>
+  </div>
+</section>
+
+<section>
+  <p class="pl-8 gradient-title">
+    Protein Structure
+  </p>
+  <div id="viewport" style="width: 500px; height: 400px; margin: 0 auto;"></div>
+
+<script src="https://unpkg.com/ngl@latest/dist/ngl.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Initialize NGL Stage with proper parameters
+    var stage = new NGL.Stage("viewport", {
+      backgroundColor: "white",
+      width: "500px",
+      height: "400px"
+    });
+
+    // Load a PDB structure with error handling
+    stage.loadFile("rcsb://1crn", { defaultRepresentation: true })
+      .then(function() {
+        console.log("NGL viewer loaded successfully");
+      })
+      .catch(function(error) {
+        console.error("Error loading NGL viewer:", error);
+      });
+  });
+</script>
+
+</section>
+
+<section>
+  <p class="pl-8 gradient-title">Rough js Example</p>
+  <canvas id="rough-canvas" width="400" height="200"></canvas>
+
+  <script type="module">
+    import rough from 'https://cdn.jsdelivr.net/npm/roughjs@4.6.6/+esm';
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const canvas = document.getElementById('rough-canvas');
+      const rc = rough.canvas(canvas);
+
+      // Draw rough.js shapes
+      rc.circle(50, 50, 40, { fill: 'red' }); // fill with red hachure
+      rc.rectangle(120, 15, 80, 80, { fill: 'red' });
+      rc.circle(50, 150, 40, {
+        fill: "rgb(10,150,10)",
+        fillWeight: 3 // thicker lines for hachure
+      });
+      rc.rectangle(220, 15, 80, 80, {
+        fill: 'red',
+        hachureAngle: 60, // angle of hachure,
+        hachureGap: 8
+      });
+      rc.rectangle(120, 105, 80, 80, {
+        fill: 'rgba(255,0,200,0.2)',
+        fillStyle: 'solid' // solid fill
+      });
+    });
+  </script>
+
+</section>
+
+<section>
+<p class="pl-8 gradient-title">Graph Example</p>
+<div id="myplot"></div>
+<script type="module">
+
+import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
+
+
+const plot = Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: Math.random})).plot();
+const div = document.querySelector("#myplot");
+div.appendChild(plot);
+
+
+</script>
+
+</section>
+
+
+<section>
+  <ul class="timeline timeline-vertical">
+  <li>
+    <div class="timeline-start timeline-box">First Macintosh computer</div>
+    <div class="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="text-primary h-5 w-5"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <hr class="bg-primary" />
+  </li>
+  <li>
+    <hr class="bg-primary" />
+    <div class="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="text-primary h-5 w-5"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <div class="timeline-end timeline-box">iMac</div>
+    <hr class="bg-primary" />
+  </li>
+  <li>
+    <hr class="bg-primary" />
+    <div class="timeline-start timeline-box">iPod</div>
+    <div class="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="text-primary h-5 w-5"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <hr />
+  </li>
+  <li>
+    <hr />
+    <div class="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="h-5 w-5"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </div>
+    <div class="timeline-end timeline-box">iPhone</div>
+    <hr />
+  </li>
+  <li>
+    <hr />
+    <div class="timeline-start timeline-box">Apple Watch</div>
+    <div class="timeline-middle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        class="h-5 w-5"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </div>
+  </li>
+</ul>
+</section>
+
+<section>
+  <p class="pl-8 gradient-title">What is Bioinformatics</p>
+  <div class="grid grid-cols-2 items-center -my-8 pl-8">
+    <div class="text-center">
+      <img src="../images/bioinfo_intro/paulien.jpg" alt="Paulien Hogeweg" class="w-3/5 mx-auto">
+      <p class="text-sm text-left"><a href="https://ubc.uu.nl/introduction-50-years-bioinformatics/">Paulien Hogeweg</a></p>
+    </div>
+    <div class="text-center my-0">
+      <img src="../images/bioinfo_intro/ben_hesper.jpg" alt="Ben Hesper" class="w-1/3 mx-auto">
+      <p class="text-sm text-left"><a href="https://ubc.uu.nl/introduction-50-years-bioinformatics/">Ben Hesper</a></p>
+    </div>
+  </div>
+  <div class="text-center my-0">
+    <p class="text-5xl">The study of informatic processes in biotic systems.</p>
+  </div>
+  <div class="mt-6 text-2xl leading-relaxed px-8">
+    <p class="fragment">Life is information processing in its various forms, e.g., information accumulation during evolution, information transmission from DNA to intra- and intercellular processes, and the interpretation of such information at multiple levels.</p>
+    <p class="mt-4  fragment"><span class="font-bold text-purple-600">Information processing</span> could serve as a useful metaphor for understanding living systems. Therefore, in addition to <span data-rn="underline" data-rn-color="#f97316">bio</span>physics and <span data-rn="underline" data-rn-color="#f97316">bio</span>chemistry, it was useful to distinguish <span class="font-bold text-purple-600">bioinformatics</span> as a research field.</p>
+  </div>
+</section>
+
+<section>
+  <p class="pl-8 gradient-title">What is Bioinformatics</p>  
+  <p class="text-5xl font-medium mt-8 px-8">
+    Put simply, bioinformatics is the science of
+    <span data-rn="underline" data-rn-color="#f97316">storing, retrieving</span> and
+    <span data-rn="underline" data-rn-color="#3b82f6">analyzing</span>
+    <span data-rn="underline" data-rn-color="#22c55e">large amounts</span> of
+    <span data-rn="underline" data-rn-color="#a855f7">biological information.</span>
+  </p>
+  <div class="absolute mt-8 right-4 text-sm px-8">
+    <a href="https://www.ebi.ac.uk/training/online/courses/bioinformatics-terrified/what-bioinformatics/">ebi.ac.uk</a>
+  </div>
+</section>
+
+<section>
+  <p class="pl-8 gradient-title">Central Dogma</p>
+  <div class="text-center text-3xl">
+    <button class="border-2 border-blue-500 rounded px-4 py-2 mx-2 hover:bg-blue-100">DNA</button>
+    <i class="fas fa-arrow-right mx-2"></i>
+    <button class="border-2 border-cyan-500 rounded px-4 py-2 mx-2 hover:bg-cyan-100">RNA</button>
+    <i class="fas fa-arrow-right mx-2"></i>
+    <button class="border-2 border-green-500 rounded px-4 py-2 mx-2 hover:bg-green-100">Protein</button>
+  </div>
+  <div class="grid grid-cols-3 gap-8 h-64">
+    <div class="text-center">
+      <p class="text-blue-600 text-5xl pt-4 fragment">Genomics</p>
+      <p class="text-3xl fragment">Genome annotation, Comparative genomics, Genome-wide association studies</p>
+    </div>
+    <div class="text-center">
+      <p class="text-cyan-600 text-5xl pt-4 fragment">Transcriptomics</p>
+      <p class="text-3xl fragment">RNA-seq, DGE, ncRNA, RNA structure prediction, RNA design</p>
+    </div>
+    <div class="text-center">
+      <p class="text-green-600 text-5xl pt-4 fragment">Proteomics</p>
+      <p class="text-3xl fragment">Functional annotation, structure prediction, PPI, PTMs</p>
+    </div>
+  </div>
+  <div class="text-center mt-8">
+    <p class="text-5xl font-semibold fragment">Sequencing</p>
+    <p class="text-3xl fragment">Phylogenetics</p>
+    <p class="text-3xl fragment">Metagenomics, Epigenomics, ...</p>
+  </div>
+</section>
+
+<section data-visibility="hidden">
+  <p class="pl-8 gradient-title">Why study Bioinformatics</p>
+  <p class="text-3xl mb-8">For research</p>
+  <div class="text-center">
+    <img src="/images/bioinfo_intro/Human_Genome_Science.png" alt="Human Genome Science" class="w-1/3 mx-auto">
+  </div>
+</section>
+
+<section>
+  <p class="pl-8 gradient-title">Biological Databases</p>
+    <div class="px-8 text-4xl">
+  <p class="font-semibold">Online libraries that contain structured information about living organisms.</p>
+  <p class="fragment">Convenient, computable access to prior knowledge that is vital for planning future experiments and for discovering new knowledge through data mining.</p>
+  <p class="fragment">Databases can be of different types depending upon their information content.</p>  
+  <p class="fragment">NCBI and EMBL-EBI host several databases and web-servers</p>
+  </div>
+</section>
+
+<section>
+  <p class="pl-8 gradient-title">Biological Databases &mdash; Development</p>
+  <div class="text-center mb-4">
+    <img src="/images/bioinfo_intro/Database_commons_2.jpg" alt="Database Commons" class="inline-block max-w-2xl">
+    <p class="text-sm mt-2 text-right px-8"><a href="https://academic.oup.com/gpb/article/21/5/1054/7632866">Database Commons</a></p>
+  </div>
+  <p class="text-4xl text-center mt-8 fragment">Ten Simple Rules for Developing Public Biological Databases. <span class="text-sm"><a href="https://doi.org/10.1371/journal.pcbi.1005128" target="_blank">PLOS One</a></span></p>
+</section>
+
+<section data-visibility="hidden">
+  <p class="pl-8 gradient-title">NGS</p>
+  <div class="text-center my-8">
+    <p class="text-xl my-4"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4633438/pdf/40142_2015_Article_76.pdf">Next Generation Sequencing Review</a></p>
+    <p class="text-xl my-4"><a href="https://web.natur.cuni.cz/~muncling/Metzker%202010%20Next%20generation%20sequencing.pdf">Metzker 2010 Review</a></p>
+  </div>
+</section>
+
+<section>
+  <p class="pl-8 gradient-title">Next-Generation Sequencing</p>
+  <div class="text-center">
+    <iframe width="700" height="394" src="https://www.youtube.com/embed/mZA3fdKijHY?si=l_zIFbCLxS7W_1JT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="rounded-lg"></iframe>
+  </div>
+</section>
+
+<section class="flex items-center justify-center">
+  <p class="pl-8 gradient-title">Next Generation Sequencing</p>
+  <div class="px-8">
+    <p class="text-4xl mb-8 font-semibold">
+      Sequencing technology is the <span data-rn="underline" data-rn-color="#f97316">engine</span> that powers the car that allows us to navigate the human genome roadmap.
+    </p>
+    <p class="text-4xl mt-4 fragment">
+      We need the raw materials, such as <span data-rn="underline" data-rn-color="#f97316">fuel (DNA)</span>, sparks to ignite the fuel <span data-rn="underline" data-rn-color="#f97316">(reagents)</span>, mechanical parts to translate fuel and ignition into movement <span data-rn="underline" data-rn-color="#f97316">(robotics)</span> and <span class="font-bold text-purple-600">direction (bioinformatics)</span>, all working in a carefully engineered balance, and a driver (genome centre) to steer the automobile quickly and efficiently to the desired <span data-rn="underline" data-rn-color="#f97316">destination (biological understanding)</span>.
+    </p>
+    <div class="absolute bottom-4 right-4 text-sm">
+      <a href="https://doi.org/10.1038/nature09796">Nature (2011)</a>
+    </div>
+  </div>
+</section>
+
+<section data-visibility="hidden">
+  <p class="pl-8 gradient-title">NGS &mdash;
+ Applications</p>
+  <div class="text-center">
+    <img src="/images/bioinfo_intro/NGS_applications.jpg" alt="NGS Applications" class="w-3/4 mx-auto">
+  </div>
+  <div class="absolute bottom-4 right-4 text-sm">
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10376292/">PubMed</a>
+  </div>
+</section>
+
+<section>
+  <p class="pl-8 gradient-title">Bioinformatics Education</p>
+  <p class="text-3xl mb-8 px-8">Important challenges</p>
+  <div class="text-center fragment px-8">
+    <img src="/images/bioinfo_intro/Bioinfo_edu_barrier_1.png" alt="Education Barriers" class="w-4/5 mx-auto">
+  </div>
+  <div class="absolute bottom-4 right-4 text-sm px-8">
+    <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0224288">PLOS One, 2019</a>
+  </div>
+</section>
+
+<section>
+  <p class="pl-8 gradient-title">Bioinformatics Education</p>
+  <div class="text-center px-8">
+    <img src="/images/bioinfo_intro/Bioinfo_edu_barrier_2.png" alt="Education Barriers 2" class="w-11/12 mx-auto">
+  </div>
+  <div class="absolute bottom-4 right-4 text-sm px-8">
+    <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0224288">PLOS One, 2019</a>
+  </div>
+</section>
+
+<section>
+  <p class="pl-8 gradient-title">Bioinformatics Skills</p>
+  <div class="text-center px-8">
+    <img src="/images/bioinfo_intro/Bioinfo_edu_skill_1_1.png" alt="Skills" class="w-4/5 mx-auto">
+  </div>
+  <div class="px-8">
+  <p class="text-3xl font-medium mt-6 fragment">S1 (Role) — Understand the role of computation and data mining in hypothesis-driven processes within the life sciences</p>
+  <p class="text-3xl font-medium mt-4 fragment">S2 (Concepts) — Understand computational concepts used in bioinformatics, e.g., meaning of algorithm, bioinformatics file formats</p>
+  <p class="text-3xl font-medium mt-4 fragment">S3 (Statistics) — Know statistical concepts used in bioinformatics, e.g., E-value, z-scores, t test, type-1 error, type-2 error, employ R</p>
+  </div>
+  <div class="absolute bottom-4 right-4 text-sm">
+    <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0196878">PLOS One, 2018</a>
+  </div>
+</section>
+
+<section>
+  <p class="pl-8 gradient-title">Bioinformatics Skills - Access</p>
+  <div class="grid grid-cols-[20%_20%_1fr] fragment">
+    <img src="/images/bioinfo_intro/Bioinfo_edu_skill_Access_1.png" alt="Access 1" class="pt-2">
+    <img src="/images/bioinfo_intro/Bioinfo_edu_skill_Access_2.png" alt="Access 2">
+    <div>
+      <p class="text-3xl font-medium">S4 (Access genomic)—Know how to access genomic data, e.g., in NCBI nucleotide <span class="inline-block" data-rn-type="circle">databases</span></p>
+      <p class="text-3xl font-medium mt-2">S6 (Access expression)—Know how to access gene expression data, e.g., in UniGene, GEO, SRA</p>
+    </div>
+  </div>
+  <div class="grid grid-cols-[20%_20%_1fr] fragment">
+    <img src="/images/bioinfo_intro/Bioinfo_edu_skill_Access_3.png" alt="Access 3">
+    <img src="/images/bioinfo_intro/Bioinfo_edu_skill_Access_4.png" alt="Access 4">
+    <div>
+      <p class="text-3xl font-medium">S8 (Access proteomic)—Know how to access proteomic data, e.g., in NCBI protein <span class="highlight" data-rn="circle">databases</span></p>
+      <p class="text-3xl font-medium mt-2">S10 (Access metabolomic)—Know how to access metabolomic and systems biology data, e.g., in the Human Metabolome <span class="highlight" data-rn="circle">Database</span></p>
+    </div>
+  </div>
+  <div class="absolute bottom-4 right-4 text-sm">
+    <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0196878">PLOS One, 2018</a>
+  </div>
+</section>
+
+<section>
+  <p class="pl-8 gradient-title">Bioinformatics Skills - Tools</p>
+  <div class="text-center -my-4">
+    <img src="/images/bioinfo_intro/Bioinfo_edu_skill_Tools_1.png" alt="Tools 1" class="w-1/5 mx-4 inline-block">
+    <img src="/images/bioinfo_intro/Bioinfo_edu_skill_Tools_2.png" alt="Tools 2" class="w-1/5 mx-4 inline-block">
+    <img src="/images/bioinfo_intro/Bioinfo_edu_skill_Tools_3.png" alt="Tools 3" class="w-1/5 mx-4 inline-block">
+  </div>
+  <div class="px-8">
+  <p class="text-3xl font-medium mt-0 fragment">S5 (Tools genomic)—Be able to use bioinformatics tools to analyze genomic data, e.g., <span class="inline-block w-fit"><span  data-rn="circle" data-rn-color="#9333ea">BLASTN</span></span>, genome browser</p>
+  <p class="text-3xl font-medium mt-4 fragment">S7 (Tools expression)—Be able to use bioinformatics tools to analyze gene expression data, e.g., GeneSifter, David, ORF Finder</p>
+  <p class="text-3xl font-medium mt-4 fragment">S9 (Tools proteomic)—Be able to use bioinformatics tools to examine protein structure and function, e.g., <span class="font-bold text-purple-600">BLASTP</span>, Cn3D, PyMol</p>
+  </div>
+  <div class="absolute bottom-4 right-4 text-sm">
+    <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0196878">PLOS One, 2018</a>
+  </div>
+</section>
+
+<section>
+  <p class="pl-8 gradient-title">Bioinformatics Skills</p>
+  <div class="text-center mb-8">
+    <img src="/images/bioinfo_intro/Bioinfo_edu_skill_3.png" alt="More Skills" class="w-full">
+  </div>
+  <div class="px-8">
+  <p class="text-3xl font-medium mt-2 fragment">S11—Be able to use bioinformatics tools to examine the flow of molecules within pathways/networks, e.g., Gene Ontology, KEGG</p>
+  <p class="text-3xl font-medium mt-2 fragment">S12—Be able to use bioinformatics tools to examine metagenomics data, e.g., MEGA, MUSCLE</p>
+  <p class="text-3xl font-medium mt-2 fragment">S13—Know how to write short computer programs as part of the scientific discovery process, e.g., write a script to analyze sequence data</p>
+  <p class="text-3xl font-medium mt-2 fragment">S14—Be able to use software packages to manipulate Genomics and analyze bioinformatics data, e.g., Gene, Vector NTI Express, spreadsheets</p>
+  <p class="text-3xl font-medium mt-2 fragment">S15—Operate in a variety of computational environments e.g., Mac OS, Windows, web- or cloud-based, Linux command line</p>
+  </div>
+  <div class="absolute bottom-4 right-4 text-sm">
+    <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0196878">PLOS One, 2018</a>
+  </div>
+</section>
+
+<section>
+  <p class="pl-8 gradient-title">Bioinformatics &mdash; Programming</p>
+  <div class="grid grid-cols-2 gap-8 h-80 px-8">
+    <div class="flex flex-col justify-center items-center text-left font-medium">
+      <img src="https://www.python.org/static/community_logos/python-logo-master-v3-TM.png" alt="Python" class="w-3/5 mb-4">
+      <p class="text-3xl mb-4 fragment" data-fragment-index="1">A high-level, object-oriented programming language.</p>
+      <p class="text-3xl mb-4 fragment" data-fragment-index="2">Libraries like Biopython for Bioinformatics analysis.</p>
+      <p class="text-2xl fragment" data-fragment-index="3">Ebook: <a href="https://pythonbook.bioinfo.guru" target="_blank">pythonbook.bioinfo.guru</a></p>
+    </div>
+    <div class="flex flex-col justify-center items-center text-left font-medium">
+      <img src="https://www.r-project.org/logo/Rlogo.png" alt="R" class="w-1/4 mb-4">
+      <p class="text-3xl mb-4 fragment" data-fragment-index="1">A language and environment for statistical computing and graphics.</p>
+      <p class="text-3xl mb-4 fragment" data-fragment-index="2">Packages like Bioconductor for bioinformatics analysis.</p>
+      <p class="text-2xl fragment" data-fragment-index="3">Ebook: <a href="https://rbook.bioinfo.guru" target="_blank">rbook.bioinfo.guru</a></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="pl-8 gradient-title">Bioinformatics &mdash; Research</p>
+  <div class="text-center -mt-4">
+    <iframe src="https://www.ncbi.nlm.nih.gov/pmc/?term=bioinformatics" width="800" height="400" class="rounded-lg"></iframe>
+  </div>
+</section>
+
+<section>
+  <p class="pl-8 gradient-title">Bioinformatics &mdash; Research</p>
+  <div class="grid grid-cols-3 gap-4 h-96 -mt-8 px-8">
+    <div class="text-left">
+      <img src="/images/bioinfo_intro/Fungal_aaRS_1.png" alt="Fungal Research 1" class="w-4/5 mx-auto mb-2 fragment">
+      <img src="/images/bioinfo_intro/Fungal_aaRS_2.png" alt="Fungal Research 2" class="w-4/5 mx-auto fragment">
+      <p class="text-lg leading-tight mt-2 fragment">Novel and unique domains in aminoacyl-tRNA synthetases from human fungal pathogens <i>Aspergillus niger</i>, <i>Candida albicans</i> and <i>Cryptococcus neoformans</i><br>
+      <a href="https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-15-1069">Datt M and Sharma A (2014)</a></p>
+    </div>
+    <div class="text-left">
+      <img src="/images/bioinfo_intro/aaRS_docking_1.png" alt="Docking 1" class="mb-2 fragment">
+      <img src="/images/bioinfo_intro/aaRS_docking_2.jpg" alt="Docking 2" class="mb-2 fragment">
+      <p class="text-lg leading-tight fragment">In silico assessment of natural products and approved drugs as potential inhibitory scaffolds targeting aminoacyl-tRNA synthetases from <i>Plasmodium</i><br>
+      <a href="https://link.springer.com/article/10.1007/s13205-020-02460-6">Doshi K, Pandya N, and Datt M (2020)</a></p>
+    </div>
+    <div class="text-left">
+      <img src="/images/bioinfo_intro/aaRS_MD_1.png" alt="MD 1" class="w-4/5 mx-auto mb-2 fragment">
+      <img src="/images/bioinfo_intro/aaRS_MD_2.png" alt="MD 2" class="w-4/5 mx-auto fragment">
+      <p class="text-lg leading-tight mt-2 fragment">Interplay of substrate polymorphism and conformational plasticity of <i>Plasmodium</i> tyrosyl-tRNA synthetase<br>
+      <a href="https://www.sciencedirect.com/science/article/abs/pii/S1476927121001523">Datt M (2021)</a></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="pl-8 gradient-title">Nobel Prizes</p>
+  <div class="grid grid-cols-3 -mt-8">
+    <div class="text-left text-xl">
+      <img src="/images/bioinfo_intro/Nobel_1998.png" alt="Nobel 1998" class="h-62 mx-auto mb-2 object-contain fragment">
+      <p class="fragment">Divided equally between Walter Kohn "for his development of the <span data-rn="underline" data-rn-color="#f97316">density-functional theory</span>" and John A. Pople "for his development of <span data-rn="underline" data-rn-color="#f97316">computational methods</span> in quantum chemistry"</p>
+    </div>
+    <div class="text-left text-xl">
+      <img src="/images/bioinfo_intro/Nobel_2013.png" alt="Nobel 2013" class="h-62 mx-auto mb-2 object-contain fragment">
+      <p class="fragment">Awarded jointly to Martin Karplus, Michael Levitt and Arieh Warshel "for the development of multiscale <span data-rn="underline" data-rn-color="#f97316">models for complex chemical</span> systems"</p>
+    </div>
+    <div class="text-left text-xl">
+      <img src="/images/bioinfo_intro/Nobel_2024.png" alt="Nobel 2024" class="h-62 mx-auto mb-2 object-contain fragment">
+      <p class="fragment">Divided, one half awarded to David Baker "for <span data-rn="underline" data-rn-color="#f97316">computational protein</span> design", the other half jointly to Demis Hassabis and John Jumper "for <span data-rn="underline" data-rn-color="#f97316">protein structure prediction</span>"</p>
+    </div>
+  </div>
+  <div class="absolute bottom-4 right-4 text-sm">
+    <a href="https://www.nobelprize.org/">nobelprizes.org</a>
+  </div>
+</section>
+
+<section>
+  <p class="pl-8 gradient-title">What is Bioinformatics</p>
+  <div class="text-left">
+    <p class="text-5xl pt-8 px-8">
+      It is a highly interdisciplinary field involving many different types of specialists, including biologists, molecular life scientists, computer scientists and mathematicians.
+    </p>
+    <div class="absolute bottom-4 right-4 text-sm">
+      <a href="https://www.ebi.ac.uk/training/online/courses/bioinformatics-terrified/what-bioinformatics/">ebi.ac.uk</a>
+    </div>
+  </div>
+</section>
+
+<section data-state="title-slide">
+  <div class="text-center mt-16">
+  <p class="text-6xl font-semibold py-8">Thank you!</p>
+  <p class="text-3xl mb-8">
+    manish@<span style="font-family: 'Geo', sans-serif; color: #9c51e0;">bioinfo.guru</span>
+  </p>
+  <div class="flex flex-col items-center mt-20">
+  <img class="w-20" src="../images/logo_final_transparent.png" alt="">
+  </div>
+  <script src="https://kit.fontawesome.com/578801937d.js" crossorigin="anonymous"></script>
+  <style>
+        .social_media {
+        color: #9c51e0;
+        word-spacing: 0.5em;
+    }
+    .social_media a {
+        color: inherit;
+    }
+  </style>
+  <div class="text-4xl space-x-4 mt-10">
+        <span class="social_media">
+            <a href="https://www.facebook.com/profile.php?id=100078250833738"><i
+                    class="fa-brands fa-facebook-square fa-bounce"
+                    style=" --fa-bounce-start-scale-x: 1; --fa-bounce-start-scale-y: 1; --fa-bounce-jump-scale-x: 1; --fa-bounce-jump-scale-y: 1; --fa-bounce-land-scale-x: 1; --fa-bounce-land-scale-y: 1; --fa-bounce-rebound: 0; --fa-bounce-height: 5px; --fa-animation-duration: 3s;"></i></a>
+            <a href="https://www.instagram.com/bioinfo.guru/"><i class="fa-brands fa-instagram-square fa-bounce"
+                    style=" --fa-bounce-start-scale-x: 1; --fa-bounce-start-scale-y: 1; --fa-bounce-jump-scale-x: 1; --fa-bounce-jump-scale-y: 1; --fa-bounce-land-scale-x: 1; --fa-bounce-land-scale-y: 1; --fa-bounce-rebound: 0; --fa-bounce-height: 5px; --fa-animation-duration: 3s; --fa-animation-delay: 0.5s;"></i></a>
+            <a href="https://www.linkedin.com/in/bioinfo-guru-68a8b7231/"><i class="fa-brands fa-linkedin fa-bounce"
+                    style=" --fa-bounce-start-scale-x: 1; --fa-bounce-start-scale-y: 1; --fa-bounce-jump-scale-x: 1; --fa-bounce-jump-scale-y: 1; --fa-bounce-land-scale-x: 1; --fa-bounce-land-scale-y: 1; --fa-bounce-rebound: 0; --fa-bounce-height: 5px; --fa-animation-duration: 3s; --fa-animation-delay: 1s;"></i></a>
+            <a href="https://twitter.com/bioinfo_guru"><i class="fa-brands fa-square-x-twitter fa-bounce"
+                    style=" --fa-bounce-start-scale-x: 1; --fa-bounce-start-scale-y: 1; --fa-bounce-jump-scale-x: 1; --fa-bounce-jump-scale-y: 1; --fa-bounce-land-scale-x: 1; --fa-bounce-land-scale-y: 1; --fa-bounce-rebound: 0; --fa-bounce-height: 5px; --fa-animation-duration: 3s; --fa-animation-delay: 1.5s;"></i></a>
+            <a href="https://whatsapp.com/channel/0029Va4LWh60rGiScUrdWa1m"><i
+                    class="fa-brands fa-square-whatsapp fa-bounce"
+                    style=" --fa-bounce-start-scale-x: 1; --fa-bounce-start-scale-y: 1; --fa-bounce-jump-scale-x: 1; --fa-bounce-jump-scale-y: 1; --fa-bounce-land-scale-x: 1; --fa-bounce-land-scale-y: 1; --fa-bounce-rebound: 0; --fa-bounce-height: 5px; --fa-animation-duration: 3s; --fa-animation-delay: 2.0s;"></i></a>
+            <a href="https://bsky.app/profile/bioinfoguru.bsky.social"><i class="fa-brands fa-square-bluesky fa-bounce"
+                    style=" --fa-bounce-start-scale-x: 1; --fa-bounce-start-scale-y: 1; --fa-bounce-jump-scale-x: 1; --fa-bounce-jump-scale-y: 1; --fa-bounce-land-scale-x: 1; --fa-bounce-land-scale-y: 1; --fa-bounce-rebound: 0; --fa-bounce-height: 5px; --fa-animation-duration: 3s; --fa-animation-delay: 2.5s;"></i></a>
+        </span>  </div>
+        </div>
+</section>

@@ -1,0 +1,5 @@
+## Slides from bioinfo.guru 
+
+### [Introduction to Python](./python-intro)
+### [Introduction to R](./r-intro)
+### [Introduction to Docking](./docking-intro)

@@ -1,0 +1,35 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "daisyui";
+
+/* Force top-left alignment for all slides */
+.reveal {
+  text-align: left !important; /* Force left alignment */
+}
+
+/* Align slide content to top-left */
+.reveal .slides > section {
+  text-align: left !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+/* If using default <section> structure */
+.reveal .slides > section {
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 10px;
+  margin: 0;
+}
+
+.gradient-title {
+  @apply text-7xl font-bold bg-gradient-to-r from-purple-600 via-cyan-500 to-pink-500 bg-clip-text text-transparent;
+}
+.gradient-title-small {
+  @apply text-5xl font-bold bg-gradient-to-r from-purple-600 via-cyan-500 to-pink-500 bg-clip-text text-transparent;
+}
+
+/* Ensure rough notation elements maintain consistent positioning */
+[data-rn], .highlight {
+  display: inline-block;
+  white-space: nowrap;
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "docking-intro/index.html#blue_dash",
+    "href": "docking-intro/index.html#blue_dash",
+    "title": "Introduction to  Molecular Docking",
+    "section": "Molecular Docking",
+    "text": "Molecular Docking\nComputational docking is widely used for study of protein-ligand interactions and for drug discovery and development.\n\n Tests the fit of a molecule in a protein binding site.\n\n\n Sampling of large number of possible configurations.  Score for fit using one of several different scoring functions."
+  },
+  {
+    "objectID": "docking-intro/index.html#dock_types",
+    "href": "docking-intro/index.html#dock_types",
+    "title": "Introduction to  Molecular Docking",
+    "section": "Docking – types",
+    "text": "Docking – types\n\n Bound-Bound Docking\n\nDocking where both the docked molecules are from a bound conformation.\n\n Bound-Unbound Docking\n\nDocking where one of the molecules is from a bound confomation.\n\n Unbound-Unbound Docking\n\nDocking where both the docked molecules are from an unbound conformation."
+  },
+  {
+    "objectID": "docking-intro/index.html#inp_target",
+    "href": "docking-intro/index.html#inp_target",
+    "title": "Introduction to  Molecular Docking",
+    "section": "Input – target receptor",
+    "text": "Input – target receptor\n\nMissing loops and sidechains, mutations.\n\n\nLow occupancy, high displacement parameters.\n\n\nWater molecules – enclosed in the targeted binding pocket, interacting with the co-crystalized ligand.\n\n\nCofactors - should be considered if they are involved in ligand recognition e.g. heme.\n\n\nHydrogen atoms – added as a part of receptor preparation in all docking programs.\n\n\nIn case no experimentally determined structure is available then homology derived structural model can be used.\n\n\nBender et al, Nat Protoc 16, 4799–4832 (2021)"
+  },
+  {
+    "objectID": "docking-intro/index.html#inp_bs",
+    "href": "docking-intro/index.html#inp_bs",
+    "title": "Introduction to  Molecular Docking",
+    "section": "Input – Binding site",
+    "text": "Input – Binding site\nA high-resolution ligand-bound structure.\n\nholo conformation performs better than apo.\n\n\ngeometries of the binding pocket are better defined.\n\n\nIn the absence of defined binding pocket, prediction methods can be used to find potential binding sites.\n\n\nGenerally small buried binding sites better than large exposed ones.\n\n\nBender et al, Nat Protoc 16, 4799–4832 (2021)"
+  },
+  {
+    "objectID": "docking-intro/index.html#dock_control",
+    "href": "docking-intro/index.html#dock_control",
+    "title": "Introduction to  Molecular Docking",
+    "section": "Docking – control",
+    "text": "Docking – control\nUsing a known inhibitor(s) to optimize binding pocket and docking parameters.\n\nDocking should be able to reproduce the binding mode of the known inhibitor.\n\n\nKnown actives should rank higher against a background of decoy molecules.\n\n\nNegative control – known inactives; should rank low in docking.\n\n\nWithout known ligands as positive controls, one is at a substantial disadvantage at setting up docking calculations.\n\n\nBender et al, Nat Protoc 16, 4799–4832 (2021)"
+  },
+  {
+    "objectID": "docking-intro/index.html#dock_hit",
+    "href": "docking-intro/index.html#dock_hit",
+    "title": "Introduction to  Molecular Docking",
+    "section": "Docking – Hit selection",
+    "text": "Docking – Hit selection\nCompounds may be filtered for both positive and negative features.\n\nDocked orientation has favorable interactions with key residues.\n\n\nbinding affinity, ligand efficiency, solubility, toxicity, etc.\n\n\nClosely related compounds will likely dock in similar poses with similar score, cluster compounds by 2D structure similarity after all other filters have been used and only select the best scoring cluster representative for testing.\n\n\nBender et al, Nat Protoc 16, 4799–4832 (2021)"
+  },
+  {
+    "objectID": "docking-intro/index.html#dock_prog",
+    "href": "docking-intro/index.html#dock_prog",
+    "title": "Introduction to  Molecular Docking",
+    "section": "Docking Programs",
+    "text": "Docking Programs\n\n\nAutoDock\nDOCK\n\n\n\n\n\n\nSchrodinger\nDiscovery Studio\n\n\nSwissDock\nDockThor"
+  },
+  {
+    "objectID": "docking-intro/index.html#lig_db",
+    "href": "docking-intro/index.html#lig_db",
+    "title": "Introduction to  Molecular Docking",
+    "section": "Ligand Databases",
+    "text": "Ligand Databases"
+  },
+  {
+    "objectID": "docking-intro/index.html#dock_analysis",
+    "href": "docking-intro/index.html#dock_analysis",
+    "title": "Introduction to  Molecular Docking",
+    "section": "Analysis",
+    "text": "Analysis\nLigplot+\nDiscovery Studio Visualizer\n\n\n\nProLIF\nBINANA"
+  },
+  {
+    "objectID": "docking-intro/index.html#dock_workflow",
+    "href": "docking-intro/index.html#dock_workflow",
+    "title": "Introduction to  Molecular Docking",
+    "section": "Docking – workflow",
+    "text": "Docking – workflow\n\n\n\nReceptor Preparation\n\n\n\n\n\n\nGrid Preparation\n\n\n\n\n\n\n\nLigand Preparation\n\n\n\n\n\n\nprepare_receptor.bat\nAdd missing residues, add hydrogens, etc.\n\n\nprepare_ligand.bat\nAdd hydrogens, optimize geometry, etc.\n\n\nGrid generation using AGFRgui\nGrid box settings.\n\n\nPerform docking calculations using ADFR or Vina\n\n\nAnalysis of docking results\nRMSD, binding energy, interactions, etc.\n\n\n\n\nDocking\n\n\n\n\n\n\n\n\n\nAnalysis"
+  },
+  {
+    "objectID": "docking-intro/index.html#dock_prot",
+    "href": "docking-intro/index.html#dock_prot",
+    "title": "Introduction to  Molecular Docking",
+    "section": "Molecular Docking – gist",
+    "text": "Molecular Docking – gist\n\nUnderstand the configuration parameters\n\nReview the literature\n\n\nKnowledge of scripting language"
+  },
+  {
+    "objectID": "docking-intro/index.html#thank-you",
+    "href": "docking-intro/index.html#thank-you",
+    "title": "Introduction to  Molecular Docking",
+    "section": "Thank you!",
+    "text": "Thank you!\n\n\nmanish@bioinfo.guru"
+  }
+]

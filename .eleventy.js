@@ -1,16 +1,54 @@
-// .eleventy.js
-console.log("Loading .eleventy.js from", __filename);
-const fs = require("fs");
+import fs from "fs";
+import path from 'path';
+import cssnano from 'cssnano';
+import postcss from 'postcss';
+import tailwindcss from '@tailwindcss/postcss';
+import pluginWebc from "@11ty/eleventy-plugin-webc";
 
-module.exports = function (eleventyConfig) {
+export default function(eleventyConfig) {
     console.log("Registering rawInclude shortcode/filter");
+
+    eleventyConfig.addPlugin(pluginWebc);
+
+  const processor = postcss([
+    //compile tailwind
+    tailwindcss(),
+
+    //minify tailwind css
+    cssnano({
+      preset: 'default',
+    }),
+  ]);
+
+      eleventyConfig.on('eleventy.before', async () => {
+    const tailwindInputPath = path.resolve('./assets/css/style.css');
+
+    const tailwindOutputPath = './assets/css/output.css';
+
+    const cssContent = fs.readFileSync(tailwindInputPath, 'utf8');
+
+    const outputDir = path.dirname(tailwindOutputPath);
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+    }
+
+    const result = await processor.process(cssContent, {
+      from: tailwindInputPath,
+      to: tailwindOutputPath,
+    });
+
+    fs.writeFileSync(tailwindOutputPath, result.css);
+  });
 
     // passthroughs (keep yours)
     eleventyConfig.addPassthroughCopy({ "node_modules/reveal.js/dist": "reveal.js/dist" });
     eleventyConfig.addPassthroughCopy({ "node_modules/reveal.js/plugin": "reveal.js/plugin" });
     eleventyConfig.addPassthroughCopy({ "node_modules/reveal.js-appearance/plugin/appearance": "reveal.js/plugin/appearance" });
+
+    
     eleventyConfig.addPassthroughCopy("src/css");
     eleventyConfig.addPassthroughCopy("src/images");
+    eleventyConfig.addPassthroughCopy("assets");
     eleventyConfig.addPassthroughCopy("src/**/*.jpg");
     eleventyConfig.addPassthroughCopy("src/**/*.png");
     eleventyConfig.addPassthroughCopy("src/**/*.gif");

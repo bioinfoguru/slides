@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Geo&display=swap');
+
+.bioinfoguru {
+	--my-color1: #9c51e0;
+	font-family: 'Geo', sans-serif;
+	color: var(--my-color1);
+	font-size: 125%;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Move logo to bottom-left instead of bottom-right */
+.reveal .slide-logo {
+	position: absolute;
+	bottom: 12px;
+	left: 12px;
+	/* override right positioning */
+	right: auto;
+	/* cancel default right */
+}
+
+.no_bullet ul {
+	list-style-type: none;
+	/* Removes the bullet icon */
+	padding-left: 0;
+	/* Removes the default left indentation of the <ul> */
+	margin: 0;
+	/* Resets default top/bottom margins */
+}
+
+i.fa-bars {
+	visibility: hidden;
+}
+
+@keyframes waveGradient {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/* Wave gradient animation for Reveal.js backgrounds via data-state */
+@keyframes waveGradient {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.wave-gradient {
+	background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
+	background-size: 800% 800%;
+	animation: waveGradient 20s ease infinite;
+}
+
+@keyframes gentleFlow {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.gentle-gradient {
+	background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
+	background-size: 400% 400%;
+	animation: gentleFlow 25s ease infinite;
+}
