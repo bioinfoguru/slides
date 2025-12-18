@@ -24,8 +24,7 @@ include-in-header:
       <script src="https://cdn.tailwindcss.com"></script>
 ---
 
-## Software {auto-animate=true}
-
+## [Software]{.title-gradient auto-animate=true}
 
 :::: {.columns}
 ::: {.column width="60%"}
@@ -70,7 +69,7 @@ Integrated Development Environments (IDEs)
 
 ---
 
-## R advantages
+## [R advantages]{.title-gradient}
 
 :::: {.columns}
 
@@ -101,7 +100,7 @@ Platform independent
 
 ---
 
-## R packages
+## [R packages]{.title-gradient}
 
 <iframe src="https://cran.r-project.org/web/packages/" width="100%" height="500px" style="border:none;"></iframe>
 
@@ -109,7 +108,7 @@ Platform independent
 
 ---
 
-## Let's code
+## [Let's code]{.title-gradient}
 
 <br>
 

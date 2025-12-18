@@ -215,3 +215,12 @@ i.fa-bars {
 /*
 -- End BackGround Animation 
 */
+
+.title-gradient {
+  display: inline-block;
+  background-image: linear-gradient(to right, #6366f1, #ec4899);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent !important;
+}

@@ -7,7 +7,7 @@ project:
 #    - Enzymes
 #    - TCA    
 #    - docking-intro
-    - autodock-intro
+    - r-intro
 
 #website:
 #  title: "Slides from bioinfo.guru"
