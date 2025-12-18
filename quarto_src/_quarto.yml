@@ -6,7 +6,8 @@ project:
 #    - python-intro
 #    - Enzymes
 #    - TCA    
-    - docking-intro
+#    - docking-intro
+    - ml-intro
 
 #website:
 #  title: "Slides from bioinfo.guru"

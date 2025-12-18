@@ -1,5 +1,68 @@
 [
   {
+    "objectID": "ml-intro/index.html#machine-learning-definition",
+    "href": "ml-intro/index.html#machine-learning-definition",
+    "title": "Introduction to  Machine Learning",
+    "section": "Machine Learning – definition",
+    "text": "Machine Learning – definition\nA type of artificial intelligence in which computers use huge amounts of data to learn how to do tasks rather than being programmed to do them.\n\nMachine learning makes it possible for computing systems to become smarter as they encounter additional data."
+  },
+  {
+    "objectID": "ml-intro/index.html#blue_dash",
+    "href": "ml-intro/index.html#blue_dash",
+    "title": "Introduction to  Machine Learning",
+    "section": "Machine Learning – types",
+    "text": "Machine Learning – types\n\n Supervised machine learning\n\nData with labels – learn the mapping between input and output.\n\n Unupervised machine learning\n\nData without labels – learn patterns in the dataset.\n\n Reinforcement machine learning\n\nFeedback-based learning – actions are rewarded or punished."
+  },
+  {
+    "objectID": "ml-intro/index.html#machine-learning-workflow",
+    "href": "ml-intro/index.html#machine-learning-workflow",
+    "title": "Introduction to  Machine Learning",
+    "section": "Machine learning – workflow",
+    "text": "Machine learning – workflow\n\n\n\nData\n\n\n\n\n\nData Pre-processing\n\n\n\n\n\n\nModel Building\n\n\n\n\n\nModel Validation\n\n\n\n\n\n\nModel Deployment\n\n\nData collection\nDifferent sources of data\nDifferent types of data\n\nData cleaning\nData Normalization\nFeature extraction\n\nTraining\nAlgorithm selection\nHyperparameter tuning\n\nTesting\nStatistical analysis\n\nPrediction or classification of the new data."
+  },
+  {
+    "objectID": "ml-intro/index.html#machine-learning-statistics",
+    "href": "ml-intro/index.html#machine-learning-statistics",
+    "title": "Introduction to  Machine Learning",
+    "section": "Machine learning statistics",
+    "text": "Machine learning statistics\n\n\n\n\nConfusion Matrix\n\n\n\n\n\n\n\n\n\n\nPredicted Positive\nPredicted Negative\n\n\n\n\nActual Positive\nTP\nFN\n\n\nActual Negative\nFP\nTN\n\n\n\n\nSensitivity ↔︎ True Positive Rate ↔︎ Recall\nSpecificity ↔︎ True Negative Rate\nPrecision ↔︎ Positive Predictive Value\n\n\n\n\\[\nSensitivity = \\frac{TP}{TP+FN}\n\\] \\[\nSpecificity = \\frac{TN}{TN+FP}\n\\] \\[\nPrecision = \\frac{TP}{TP + FP}\n\\]\n\\[\nFPR = \\frac{FP}{TN + FP} = 1 - specificity\n\\]\n\\[\nAccuracy = \\frac{TP +TN}{TP +TN +FP +FN}\n\\]\n\\[\nError \\text{ } rate = \\frac{FP +FN}{TP + TN+ FP + FN}\n\\]"
+  },
+  {
+    "objectID": "ml-intro/index.html#section",
+    "href": "ml-intro/index.html#section",
+    "title": "Introduction to  Machine Learning",
+    "section": "",
+    "text": "Thank you!\n\n\n\n\n\nmanish@bioinfo.guru"
+  },
+  {
+    "objectID": "python-intro/index.html#python-distributions",
+    "href": "python-intro/index.html#python-distributions",
+    "title": "Introduction to Python",
+    "section": "Python distributions",
+    "text": "Python distributions\n\n\n\n\n\n\n\nIntegrated Development Environments (IDEs)\n\n\n\n\n \n\n\n\n \n\n\n\n \n\n\n\n \n\n\n\nNotebooks"
+  },
+  {
+    "objectID": "python-intro/index.html#python-advantages",
+    "href": "python-intro/index.html#python-advantages",
+    "title": "Introduction to Python",
+    "section": "Python advantages",
+    "text": "Python advantages\n\n\n\n\nLow entry barrier\n\n\n\n\nDynamically typed\n\n\n\n\nVersatile and Flexible\n\n\n\n\nExtensive library support\n\n\n\n\nPlatform independent\n\n\n\n\n\n\nprint(\"Hello\")\n\nHello\n\n\n\n\nlen(\"Hello\")\n\n5\n\n\n\n\nfor fruit in [\"Apple\",\"Banana\",\"Mango\"]:\n    print(fruit)\n\nApple\nBanana\nMango\n\n\n\n\n\nx = 5\nprint(x)\n\n5\n\n\n\n#include &lt;iostream&gt;\n\nint main() {\n    int x = 5;\n    std::cout &lt;&lt; x &lt;&lt; std::endl;\n    return 0;\n}\n\n\n\n\n\n\n\nmindmap\nroot((Python))\n    Paradigms\n      Obejct-oriented\n      Functional\n      Imperative\n    Applications\n      Data Science\n      Web development\n      Automation\n      Apps and games\n\n\n\n\n\n\n\n\n  https://pydsc.files.wordpress.com/2017/11/pythonenvironment.png"
+  },
+  {
+    "objectID": "python-intro/index.html#lets-code",
+    "href": "python-intro/index.html#lets-code",
+    "title": "Introduction to Python",
+    "section": "Let’s code",
+    "text": "Let’s code\n pythonbook.bioinfo.guru"
+  },
+  {
+    "objectID": "python-intro/index.html#thanks",
+    "href": "python-intro/index.html#thanks",
+    "title": "Introduction to Python",
+    "section": "Thanks!",
+    "text": "Thanks!\n manish@bioinfo.guru"
+  },
+  {
     "objectID": "docking-intro/index.html#blue_dash",
     "href": "docking-intro/index.html#blue_dash",
     "title": "Introduction to  Molecular Docking",
