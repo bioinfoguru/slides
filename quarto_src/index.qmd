@@ -1,4 +1,8 @@
-## Slides from bioinfo.guru 
+---
+title: "Slides from bioinfo.guru"
+---
+
+## Learn with engaging presentations 
 
 ### [Introduction to Python](./python-intro)
 ### [Introduction to R](./r-intro)

@@ -1,149 +1,58 @@
 [
   {
-    "objectID": "ml-intro/index.html#machine-learning-definition",
-    "href": "ml-intro/index.html#machine-learning-definition",
-    "title": "Introduction to  Machine Learning",
-    "section": "Machine Learning – definition",
-    "text": "Machine Learning – definition\nA type of artificial intelligence in which computers use huge amounts of data to learn how to do tasks rather than being programmed to do them.\n\nMachine learning makes it possible for computing systems to become smarter as they encounter additional data."
+    "objectID": "autodock-intro/index.html#blue_dash",
+    "href": "autodock-intro/index.html#blue_dash",
+    "title": "Molecular Docking",
+    "section": "Components of a docking program",
+    "text": "Components of a docking program\nRepresentation\nScoring function\nSearch method\n\n ADFR encodes the docking problem into a list of variables describing a docking solution and optimizes it for the AutoDock4 force field using Genetic Algorithm."
   },
   {
-    "objectID": "ml-intro/index.html#blue_dash",
-    "href": "ml-intro/index.html#blue_dash",
-    "title": "Introduction to  Machine Learning",
-    "section": "Machine Learning – types",
-    "text": "Machine Learning – types\n\n Supervised machine learning\n\nData with labels – learn the mapping between input and output.\n\n Unupervised machine learning\n\nData without labels – learn patterns in the dataset.\n\n Reinforcement machine learning\n\nFeedback-based learning – actions are rewarded or punished."
+    "objectID": "autodock-intro/index.html#dock_types",
+    "href": "autodock-intro/index.html#dock_types",
+    "title": "Molecular Docking",
+    "section": "Representation – Genome",
+    "text": "Representation – Genome\n\nGenome used by ADFR to encode the docking of a flexible ligand into a receptor with two flexible side-chains.\n\nhttps://doi.org/10.1371/journal.pcbi.1004586"
   },
   {
-    "objectID": "ml-intro/index.html#machine-learning-workflow",
-    "href": "ml-intro/index.html#machine-learning-workflow",
-    "title": "Introduction to  Machine Learning",
-    "section": "Machine learning – workflow",
-    "text": "Machine learning – workflow\n\n\n\nData\n\n\n\n\n\nData Pre-processing\n\n\n\n\n\n\nModel Building\n\n\n\n\n\nModel Validation\n\n\n\n\n\n\nModel Deployment\n\n\nData collection\nDifferent sources of data\nDifferent types of data\n\nData cleaning\nData Normalization\nFeature extraction\n\nTraining\nAlgorithm selection\nHyperparameter tuning\n\nTesting\nStatistical analysis\n\nPrediction or classification of the new data."
+    "objectID": "autodock-intro/index.html#inp_target",
+    "href": "autodock-intro/index.html#inp_target",
+    "title": "Molecular Docking",
+    "section": "Scoring function",
+    "text": "Scoring function\n\nThe AutoDock energy function is a weighted sum of terms representing van der Waals, hydrogen bond, electrostatic, and desolvation contributions, which are calculated between pairs of atoms.\n\n\\[\nE = w_{vdW}\\sum_{i,j}\\biggl(\\frac{A_{i,j}}{r_{i,j}^{12}} - \\frac{B_{i,j}}{r_{i,j}^6}\\biggr) + w_{hbond}\\sum_{i,j}E(t)\\biggl(\\frac{C_{i,j}}{r_{i,j}^{12}} - \\frac{D_{i,j}}{r_{i,j}^{10}}\\biggr) + w_{elec}\\sum_{i,j}\\biggl(\\frac{q_iq_j}{\\epsilon \\space r_{i,j}.r_{i,j}}\\biggr) \\\\\n+ w_{sol}\\sum_{i,j}(S_iV_j + S_jV_i)e^{\\bigl(\\frac{-r_{ij}^2}{2\\sigma^2}\\bigr)}\n\\]\n\n\n The ADFR score uses this energy function to independently score the interactions between the following three groups of atoms: Ligand atoms (L), Rigid Receptor atoms (RR) and Flexible Receptor atoms (FR).\n\\[\nS_{ADFR} = E_{L-L} + E_{L-RR} + E_{L-FR} + E_{FR-FR} + E_{FR-RR}\n\\]\n\n\nhttps://doi.org/10.1371/journal.pcbi.1004586"
   },
   {
-    "objectID": "ml-intro/index.html#machine-learning-statistics",
-    "href": "ml-intro/index.html#machine-learning-statistics",
-    "title": "Introduction to  Machine Learning",
-    "section": "Machine learning statistics",
-    "text": "Machine learning statistics\n\n\n\n\nConfusion Matrix\n\n\n\n\n\n\n\n\n\n\nPredicted Positive\nPredicted Negative\n\n\n\n\nActual Positive\nTP\nFN\n\n\nActual Negative\nFP\nTN\n\n\n\n\nSensitivity ↔︎ True Positive Rate ↔︎ Recall\nSpecificity ↔︎ True Negative Rate\nPrecision ↔︎ Positive Predictive Value\n\n\n\n\\[\nSensitivity = \\frac{TP}{TP+FN}\n\\] \\[\nSpecificity = \\frac{TN}{TN+FP}\n\\] \\[\nPrecision = \\frac{TP}{TP + FP}\n\\]\n\\[\nFPR = \\frac{FP}{TN + FP} = 1 - specificity\n\\]\n\\[\nAccuracy = \\frac{TP +TN}{TP +TN +FP +FN}\n\\]\n\\[\nError \\text{ } rate = \\frac{FP +FN}{TP + TN+ FP + FN}\n\\]"
+    "objectID": "autodock-intro/index.html#inp_bs",
+    "href": "autodock-intro/index.html#inp_bs",
+    "title": "Molecular Docking",
+    "section": "Affinity maps",
+    "text": "Affinity maps\n\n\nWithout (A) and with (B) gradient.\n\n\n\n\nThe color gradient outside the protein surface indicates favorable interactions going from weak (green) to strong (blue). Inside the protein surface the color gradient indicates unfavorable interactions going from low (yellow) to highly unfavorable (red).\n\n\nThis protocol produces maps that facilitate the search by providing a gradient for resolving clashes and by removing buried favorable cavities too small to accommodate a ligand e.g., trapped water cavities.\n\n\nhttps://doi.org/10.1371/journal.pcbi.1004586"
   },
   {
-    "objectID": "ml-intro/index.html#section",
-    "href": "ml-intro/index.html#section",
-    "title": "Introduction to  Machine Learning",
+    "objectID": "autodock-intro/index.html#dock_control",
+    "href": "autodock-intro/index.html#dock_control",
+    "title": "Molecular Docking",
+    "section": "Overall flowchart of ADFR",
+    "text": "Overall flowchart of ADFR\n\n\nhttps://doi.org/10.1371/journal.pcbi.1004586"
+  },
+  {
+    "objectID": "autodock-intro/index.html#dock_hit",
+    "href": "autodock-intro/index.html#dock_hit",
+    "title": "Molecular Docking",
+    "section": "Genetic Algorithm",
+    "text": "Genetic Algorithm\n\nThe ligand and receptor flexibility description is first used to assemble a list of variables (genome).\n\n\n\nThe initial population is then generated by creating a list of initial solutions.\n\n\n\n\nThe population is scored, sorted, and top-ranking solutions are clustered.\n\n\n\n\nThe GA seeds the next generation with the best solution of each cluster and completes it by crossing-over, mutating, and minimizing individuals from the mating population.\n\n\n\n\nThe optimization stops when one of the termination criteria (maximum number of generations or evaluations) is reached or the search converges, at which point the solutions within 1 kcal/mol of the best solution are written out.\n\n\n\nBender et al, Nat Protoc 16, 4799–4832 (2021)"
+  },
+  {
+    "objectID": "autodock-intro/index.html#dock_prog",
+    "href": "autodock-intro/index.html#dock_prog",
+    "title": "Molecular Docking",
+    "section": "ADFR vs Vina",
+    "text": "ADFR vs Vina\nScaling of docking runtimes as function of the number of flexible receptor side-chains\n\n\nhttps://doi.org/10.1371/journal.pcbi.1004586"
+  },
+  {
+    "objectID": "autodock-intro/index.html#section",
+    "href": "autodock-intro/index.html#section",
+    "title": "Molecular Docking",
     "section": "",
-    "text": "Thank you!\n\n\n\n\n\nmanish@bioinfo.guru"
-  },
-  {
-    "objectID": "python-intro/index.html#python-distributions",
-    "href": "python-intro/index.html#python-distributions",
-    "title": "Introduction to Python",
-    "section": "Python distributions",
-    "text": "Python distributions\n\n\n\n\n\n\n\nIntegrated Development Environments (IDEs)\n\n\n\n\n \n\n\n\n \n\n\n\n \n\n\n\n \n\n\n\nNotebooks"
-  },
-  {
-    "objectID": "python-intro/index.html#python-advantages",
-    "href": "python-intro/index.html#python-advantages",
-    "title": "Introduction to Python",
-    "section": "Python advantages",
-    "text": "Python advantages\n\n\n\n\nLow entry barrier\n\n\n\n\nDynamically typed\n\n\n\n\nVersatile and Flexible\n\n\n\n\nExtensive library support\n\n\n\n\nPlatform independent\n\n\n\n\n\n\nprint(\"Hello\")\n\nHello\n\n\n\n\nlen(\"Hello\")\n\n5\n\n\n\n\nfor fruit in [\"Apple\",\"Banana\",\"Mango\"]:\n    print(fruit)\n\nApple\nBanana\nMango\n\n\n\n\n\nx = 5\nprint(x)\n\n5\n\n\n\n#include &lt;iostream&gt;\n\nint main() {\n    int x = 5;\n    std::cout &lt;&lt; x &lt;&lt; std::endl;\n    return 0;\n}\n\n\n\n\n\n\n\nmindmap\nroot((Python))\n    Paradigms\n      Obejct-oriented\n      Functional\n      Imperative\n    Applications\n      Data Science\n      Web development\n      Automation\n      Apps and games\n\n\n\n\n\n\n\n\n  https://pydsc.files.wordpress.com/2017/11/pythonenvironment.png"
-  },
-  {
-    "objectID": "python-intro/index.html#lets-code",
-    "href": "python-intro/index.html#lets-code",
-    "title": "Introduction to Python",
-    "section": "Let’s code",
-    "text": "Let’s code\n pythonbook.bioinfo.guru"
-  },
-  {
-    "objectID": "python-intro/index.html#thanks",
-    "href": "python-intro/index.html#thanks",
-    "title": "Introduction to Python",
-    "section": "Thanks!",
-    "text": "Thanks!\n manish@bioinfo.guru"
-  },
-  {
-    "objectID": "docking-intro/index.html#blue_dash",
-    "href": "docking-intro/index.html#blue_dash",
-    "title": "Introduction to  Molecular Docking",
-    "section": "Molecular Docking",
-    "text": "Molecular Docking\nComputational docking is widely used for study of protein-ligand interactions and for drug discovery and development.\n\n Tests the fit of a molecule in a protein binding site.\n\n\n Sampling of large number of possible configurations.  Score for fit using one of several different scoring functions."
-  },
-  {
-    "objectID": "docking-intro/index.html#dock_types",
-    "href": "docking-intro/index.html#dock_types",
-    "title": "Introduction to  Molecular Docking",
-    "section": "Docking – types",
-    "text": "Docking – types\n\n Bound-Bound Docking\n\nDocking where both the docked molecules are from a bound conformation.\n\n Bound-Unbound Docking\n\nDocking where one of the molecules is from a bound confomation.\n\n Unbound-Unbound Docking\n\nDocking where both the docked molecules are from an unbound conformation."
-  },
-  {
-    "objectID": "docking-intro/index.html#inp_target",
-    "href": "docking-intro/index.html#inp_target",
-    "title": "Introduction to  Molecular Docking",
-    "section": "Input – target receptor",
-    "text": "Input – target receptor\n\nMissing loops and sidechains, mutations.\n\n\nLow occupancy, high displacement parameters.\n\n\nWater molecules – enclosed in the targeted binding pocket, interacting with the co-crystalized ligand.\n\n\nCofactors - should be considered if they are involved in ligand recognition e.g. heme.\n\n\nHydrogen atoms – added as a part of receptor preparation in all docking programs.\n\n\nIn case no experimentally determined structure is available then homology derived structural model can be used.\n\n\nBender et al, Nat Protoc 16, 4799–4832 (2021)"
-  },
-  {
-    "objectID": "docking-intro/index.html#inp_bs",
-    "href": "docking-intro/index.html#inp_bs",
-    "title": "Introduction to  Molecular Docking",
-    "section": "Input – Binding site",
-    "text": "Input – Binding site\nA high-resolution ligand-bound structure.\n\nholo conformation performs better than apo.\n\n\ngeometries of the binding pocket are better defined.\n\n\nIn the absence of defined binding pocket, prediction methods can be used to find potential binding sites.\n\n\nGenerally small buried binding sites better than large exposed ones.\n\n\nBender et al, Nat Protoc 16, 4799–4832 (2021)"
-  },
-  {
-    "objectID": "docking-intro/index.html#dock_control",
-    "href": "docking-intro/index.html#dock_control",
-    "title": "Introduction to  Molecular Docking",
-    "section": "Docking – control",
-    "text": "Docking – control\nUsing a known inhibitor(s) to optimize binding pocket and docking parameters.\n\nDocking should be able to reproduce the binding mode of the known inhibitor.\n\n\nKnown actives should rank higher against a background of decoy molecules.\n\n\nNegative control – known inactives; should rank low in docking.\n\n\nWithout known ligands as positive controls, one is at a substantial disadvantage at setting up docking calculations.\n\n\nBender et al, Nat Protoc 16, 4799–4832 (2021)"
-  },
-  {
-    "objectID": "docking-intro/index.html#dock_hit",
-    "href": "docking-intro/index.html#dock_hit",
-    "title": "Introduction to  Molecular Docking",
-    "section": "Docking – Hit selection",
-    "text": "Docking – Hit selection\nCompounds may be filtered for both positive and negative features.\n\nDocked orientation has favorable interactions with key residues.\n\n\nbinding affinity, ligand efficiency, solubility, toxicity, etc.\n\n\nClosely related compounds will likely dock in similar poses with similar score, cluster compounds by 2D structure similarity after all other filters have been used and only select the best scoring cluster representative for testing.\n\n\nBender et al, Nat Protoc 16, 4799–4832 (2021)"
-  },
-  {
-    "objectID": "docking-intro/index.html#dock_prog",
-    "href": "docking-intro/index.html#dock_prog",
-    "title": "Introduction to  Molecular Docking",
-    "section": "Docking Programs",
-    "text": "Docking Programs\n\n\nAutoDock\nDOCK\n\n\n\n\n\n\nSchrodinger\nDiscovery Studio\n\n\nSwissDock\nDockThor"
-  },
-  {
-    "objectID": "docking-intro/index.html#lig_db",
-    "href": "docking-intro/index.html#lig_db",
-    "title": "Introduction to  Molecular Docking",
-    "section": "Ligand Databases",
-    "text": "Ligand Databases"
-  },
-  {
-    "objectID": "docking-intro/index.html#dock_analysis",
-    "href": "docking-intro/index.html#dock_analysis",
-    "title": "Introduction to  Molecular Docking",
-    "section": "Analysis",
-    "text": "Analysis\nLigplot+\nDiscovery Studio Visualizer\n\n\n\nProLIF\nBINANA"
-  },
-  {
-    "objectID": "docking-intro/index.html#dock_workflow",
-    "href": "docking-intro/index.html#dock_workflow",
-    "title": "Introduction to  Molecular Docking",
-    "section": "Docking – workflow",
-    "text": "Docking – workflow\n\n\n\nReceptor Preparation\n\n\n\n\n\n\nGrid Preparation\n\n\n\n\n\n\n\nLigand Preparation\n\n\n\n\n\n\nprepare_receptor.bat\nAdd missing residues, add hydrogens, etc.\n\n\nprepare_ligand.bat\nAdd hydrogens, optimize geometry, etc.\n\n\nGrid generation using AGFRgui\nGrid box settings.\n\n\nPerform docking calculations using ADFR or Vina\n\n\nAnalysis of docking results\nRMSD, binding energy, interactions, etc.\n\n\n\n\nDocking\n\n\n\n\n\n\n\n\n\nAnalysis"
-  },
-  {
-    "objectID": "docking-intro/index.html#dock_prot",
-    "href": "docking-intro/index.html#dock_prot",
-    "title": "Introduction to  Molecular Docking",
-    "section": "Molecular Docking – gist",
-    "text": "Molecular Docking – gist\n\nUnderstand the configuration parameters\n\nReview the literature\n\n\nKnowledge of scripting language"
-  },
-  {
-    "objectID": "docking-intro/index.html#thank-you",
-    "href": "docking-intro/index.html#thank-you",
-    "title": "Introduction to  Molecular Docking",
-    "section": "Thank you!",
-    "text": "Thank you!\n\n\nmanish@bioinfo.guru"
+    "text": "Thank you!\n\n\n\n\n\n\n\nmanish@bioinfo.guru"
   }
 ]

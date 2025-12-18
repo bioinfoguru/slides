@@ -1,0 +1,176 @@
+---
+title: '<span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">Molecular Docking</span>'
+#title-slide-attributes:
+#  data-background-color: "pink"
+author: "Manish Datt"
+format: 
+  revealjs:
+    logo: "../images/logo_final_transparent.png"
+    progress: false
+    footer: "<span style='font-family:Geo;color:#9c51e0;'><a href='https://bioinfo.guru' target='_blank' style='text-decoration:none; color:inherit;'>bioinfo.guru</a></span>"
+    slide-number: c/t
+    include-after-body: ../clean_title_page.html
+    css: "../slides_min.css"
+title-slide-attributes: 
+  data-background-image: "../images/logo_final_transparent.png"
+  data-background-size: 75px
+  data-background-position: 50% 90%
+  data-background-color: "black"
+include-in-header:
+  - text: |
+      <script src="https://cdn.tailwindcss.com"></script>
+---
+
+## <span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">Components of a docking program</span> {#blue_dash transition="concave" transition-speed="slow" background-color="black"}
+
+Representation
+
+Scoring function 
+
+Search method
+
+::: fragment
+<br>
+<i class="italic">ADFR</i> encodes the docking problem into a list of variables describing a docking solution and optimizes it for the <i class="italic">AutoDock4</i> force field using Genetic Algorithm.
+:::
+
+## <span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">Representation – Genome</span>{#dock_types transition="concave" transition-speed="slow" background-color="black"}
+
+<img src="autodock_images/genome.png"></img>
+
+Genome used by ADFR to encode the docking of a flexible ligand into a receptor with two flexible side-chains.
+
+
+::: {.justify-end .text-base .text-right}
+https://doi.org/10.1371/journal.pcbi.1004586
+:::
+
+
+## <span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">Scoring function</span>{#inp_target transition="concave" transition-speed="slow" background-color="black"}
+
+<p class="text-3xl">
+The <i class="italic">AutoDock</i> energy function is a weighted sum of terms representing van der Waals, hydrogen bond, electrostatic, and desolvation contributions, which are calculated between pairs of atoms.
+</p>
+
+$$
+E = w_{vdW}\sum_{i,j}\biggl(\frac{A_{i,j}}{r_{i,j}^{12}} - \frac{B_{i,j}}{r_{i,j}^6}\biggr) + w_{hbond}\sum_{i,j}E(t)\biggl(\frac{C_{i,j}}{r_{i,j}^{12}} - \frac{D_{i,j}}{r_{i,j}^{10}}\biggr) + w_{elec}\sum_{i,j}\biggl(\frac{q_iq_j}{\epsilon \space r_{i,j}.r_{i,j}}\biggr) \\
++ w_{sol}\sum_{i,j}(S_iV_j + S_jV_i)e^{\bigl(\frac{-r_{ij}^2}{2\sigma^2}\bigr)}
+$$
+
+<img src="autodock_images/scoring_func1.png"></img>
+
+::: {.fragment .text-3xl}
+<br>
+The <i class="italic">ADFR</i> score uses this energy function to independently score the interactions between the following three groups of atoms: Ligand atoms (L), Rigid Receptor atoms (RR) and Flexible Receptor atoms (FR).
+
+$$
+S_{ADFR} = E_{L-L} + E_{L-RR} + E_{L-FR} + E_{FR-FR} + E_{FR-RR}
+$$
+
+
+:::
+
+
+::: {.justify-end .text-base .text-right}
+https://doi.org/10.1371/journal.pcbi.1004586
+:::
+
+## <span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">Affinity maps</span> {#inp_bs transition="concave" transition-speed="slow" background-color="black"}
+
+::: columns
+::: column
+Without (A) and with (B) gradient.
+:::
+
+::: column
+<img src="autodock_images/gradient.png"></img>
+:::
+:::
+
+
+
+::: {.fragment .text-2xl}
+The color gradient outside the protein surface indicates favorable interactions going from weak (green) to strong (blue). Inside the protein surface the color gradient indicates unfavorable interactions going from low (yellow) to highly unfavorable (red).
+:::
+
+::: {.fragment .text-2xl}
+This protocol produces maps that facilitate the search by providing a gradient for resolving clashes and by removing buried favorable cavities too small to accommodate a ligand e.g., trapped water cavities.
+:::
+
+::: {.justify-end .text-base .text-right}
+https://doi.org/10.1371/journal.pcbi.1004586
+:::
+
+## <span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">Overall flowchart of ADFR</span> {#dock_control transition="concave" transition-speed="slow" background-color="black"}
+
+
+<img src="autodock_images/flowchart.png"></img>
+
+::: {.justify-end .text-base .text-right}
+https://doi.org/10.1371/journal.pcbi.1004586
+:::
+
+## <span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">Genetic Algorithm</span> {#dock_hit transition="concave" transition-speed="slow" background-color="black"}
+
+<p class="text-3xl">
+The ligand and receptor flexibility description is first used to assemble a list of variables (genome).
+</p>
+::: fragment
+<p class="text-3xl">
+The initial population is then generated by creating a list of initial solutions.
+</p>
+:::
+
+::: fragment
+<p class="text-3xl">
+The population is scored, sorted, and top-ranking solutions are clustered. 
+</p>
+:::
+
+::: fragment
+<p class="text-3xl">
+The GA seeds the next generation with the best solution of each cluster and completes it by crossing-over, mutating, and minimizing individuals from the mating population. 
+</p>
+:::
+
+::: fragment
+<p class="text-3xl">
+The optimization stops when one of the termination criteria (maximum number of generations or evaluations) is reached or the search converges, at which point the solutions within 1 kcal/mol of the best solution are written out.
+</p>
+:::
+
+::: {.justify-end .text-base .text-right}
+Bender et al, Nat Protoc 16, 4799–4832 (2021)
+:::
+
+## <span class="-mt-8 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text">ADFR vs Vina</span> {#dock_prog transition="concave" transition-speed="slow" background-color="black"}
+
+Scaling of docking runtimes as function of the number of flexible receptor side-chains
+
+<img src="autodock_images/adfr_vina.png"></img>
+
+::: {.justify-end .text-base .text-right}
+https://doi.org/10.1371/journal.pcbi.1004586
+:::
+
+## {background-color="black"}
+
+::: {.grid .grid-cols-3 .gap-1 .content-center .m-0}
+::: {.col-span-1 .flex .justify-start}
+<p class="text-6xl pt-6 font-black">
+Thank you!
+</p>
+:::
+
+::: {.col-span-1 .flex .items-center .justify-center .mt-8}
+<img src="../images/logo_final_transparent.png" width="100px"/></img>
+:::
+
+::: {.col-span-1 .flex .items-center .justify-end .text-right .mt-96}
+<p style="font-family:Geo;">
+
+manish\@[bioinfo.guru]{style="color:#9c51e0; font-family:Geo;"}
+
+</p>
+:::
+:::
