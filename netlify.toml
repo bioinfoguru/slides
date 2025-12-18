@@ -1,5 +1,6 @@
 [build]
-  publish = "quarto_out"
+  command = "npm run build && cp -r quarto_out/* _site/ || true"
+  publish = "_site"
 
 [build.environment]
   NODE_VERSION = "18"
